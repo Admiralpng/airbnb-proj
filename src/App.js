@@ -21,13 +21,14 @@ function App() {
           <Route path="/" exact>
             <Redirect to="/home"/>
           </Route>
-          <Route>
+          <Route path="/home">
             <Home />
           </Route>
           <Route path="/viewlisting/:id">
             <ViewListing />
           </Route>
           <Route path="*">
+            <Redirect to="/404pagenotfound" />
             <NotFound />
           </Route>  
       </Switch>

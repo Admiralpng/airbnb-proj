@@ -30,7 +30,8 @@ svg:hover{
 
 a{
     text-decoration: none;
-    color:black
+    color:black;
+    width: fit-content;
 }
 a:hover{
     text-decoration: underline;
@@ -54,6 +55,7 @@ button:hover{
     flex-direction: row;
     margin-bottom:48px;
     column-gap: 24px;
+    padding: 0px 50px 0px 156px;
 }
 
 .faq-column{

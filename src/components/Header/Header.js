@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Header.css";
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import PublicIcon from '@mui/icons-material/Public';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 export const Header = () => {
+  const [showMoreMenu, setShowMoreMenu] = useState(false)
+  
+  const moreHandler=(event) => {
+    event.stopPropagation();
+    setShowMoreMenu((prev) => !prev);
+  }
+
+  useEffect(() => {
+    if (!showMoreMenu) return;
+
+    const closeMenu = () => setShowMoreMenu(false);
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMoreMenu]);  
+
   return (
     <div className="navbar">
       <nav>
@@ -19,7 +36,13 @@ export const Header = () => {
           <Link to="/"><h2>Become a Host</h2></Link>
           <div>
             <button><PublicIcon /></button>
-            <button><MenuIcon /></button>
+            <button onClick={moreHandler}><MenuIcon /></button>
+            {showMoreMenu && (
+              <div className="more-menu" onClick={(event) => event.stopPropagation()}>
+                <a href="https://www.airbnb.co.za/help" target="_blank"><span><HelpOutlineOutlinedIcon /> Help Center</span></a>
+                <Link to="/login"><span><strong>Login or Signup</strong></span></Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>

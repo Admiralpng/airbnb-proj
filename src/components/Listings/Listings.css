@@ -51,13 +51,14 @@
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
+    image-rendering: optimizeQuality;
+    padding:2px;
+    border: 2px solid transparent;
 }
 .listing-box:hover{
-    transform: scale(1.005);
-    background-color: white;
-    transition: ease-in-out 100ms;
     text-decoration: none;
-    image-rendering: optimizeQuality;
+    transition: ease-in-out 200ms;
+    border:#FF385C 2px solid;
 }
 
 .listing-box div{
@@ -81,7 +82,6 @@
     backdrop-filter: blur(8px);
     background-color: white;
     border: 2px solid #FF385C;
-    border-top: 1px solid #FF385C;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: fit-content;
     padding: 5px 8px;

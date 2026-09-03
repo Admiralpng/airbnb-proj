@@ -1,0 +1,40 @@
+.not-found{
+    display:flex;
+    justify-content: center;
+    width:100%;
+}
+.not-found > a{
+    padding: 55px;
+}
+.not-found img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    image-rendering: optimizeQuality;
+    border-radius: 20px;
+}
+
+.not-found div{
+    position: relative;
+    height:fit-content;
+    padding:30px 40px 0px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    width:550px;
+    top: 155px;
+}
+.not-found > div h1{
+    color:white;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.not-found > div p{
+    padding: 0px 20px;
+    font-size: 18px;
+    font-weight: 500;
+}

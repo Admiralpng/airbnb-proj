@@ -25,11 +25,26 @@
     background: linear-gradient(1deg, rgba(255, 56, 92, 1) -2%, rgba(255, 214, 221, 0) 15%);
 }
 .left-panel button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 14px;
     border:0;
     background:none;
+    padding: 5px 0px;
 }
 .left-panel button:hover{
     transform: scale(1.1);
     transition: ease-in-out 100ms;
+}
+.left-panel button img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    image-rendering: optimizeQuality;
+}
+.left-panel button span{
+    font-weight: 600;
+    margin-top: 8px;
+    transition: ease-in-out 400ms;
 }
