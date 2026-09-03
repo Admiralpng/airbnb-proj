@@ -1,0 +1,11 @@
+.home-page{
+    margin-top: 24px;
+}
+.home-page section h1{
+    margin-left:40px;
+    height:fit-content;
+}
+.home-page section > :nth-child(2){
+    padding: 24px;
+    margin-left: 12px;
+}

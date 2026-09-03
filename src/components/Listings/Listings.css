@@ -1,0 +1,114 @@
+.listing-array{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    height: fit-content;
+}
+
+.arrow-nav{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    position: relative;
+    top: 50%;
+    transform: translateY(120px) translateX(0);
+    height: fit-content;
+    margin-left:15px;
+}
+.scroll-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 9999px;
+    width: 30px;
+    height: 30px;
+}
+.scroll-arrow:hover{
+    background-color: gainsboro;
+    transition: ease-in-out 100ms;
+}
+
+.listing-box-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 20px;
+    flex-wrap:nowrap;
+    overflow-x: auto;
+    overflow-x:hidden;
+    white-space: nowrap;
+    mask-image: linear-gradient(to right, black 98%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 98%, transparent 100%);
+    height: fit-content;
+    padding: 0px 5px;
+    padding-bottom: 45px;
+    border-bottom: 1px solid #ddd;
+}
+
+.listing-box{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+}
+.listing-box:hover{
+    transform: scale(1.005);
+    background-color: white;
+    transition: ease-in-out 100ms;
+    text-decoration: none;
+    image-rendering: optimizeQuality;
+}
+
+.listing-box div{
+    position: relative;
+}
+.listing-box > div > span{
+    color: #FF385C;
+    position:absolute;
+    z-index: 1; 
+    top: 10px;
+}
+.listing-box div > span svg{
+    width:28px;
+    height:28px;
+}
+.listing-box div > span:first-child{
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 45px;
+    backdrop-filter: blur(8px);
+    background-color: white;
+    border: 2px solid #FF385C;
+    border-top: 1px solid #FF385C;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    padding: 5px 8px;
+    padding-left: 10px;
+    transform: translateX(12px);
+    min-width: fit-content;
+}
+
+.listing-box > div > span:first-child{
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 45px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid #FF385C;
+    border-top: 1px solid #FF385C;
+    height: fit-content;
+    padding: 5px 8px;
+    transform: translateX(12px);
+    min-width: fit-content;
+}
+.heart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height:34px;
+    transform: translateX(312px) translateY(212px);
+}
