@@ -1,44 +1,23 @@
-.navbar{
+.hosting-nav{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     min-width:100%;
-    padding:20px 20px 20px 48px;
+    padding:20px 20px 20px 44px;
     border-bottom: 1px solid gainsboro;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navbar nav{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.hosting-nav > a{
+    width:39px;
+    height:39px;
 }
-nav svg{
+.hosting-nav > svg{
     padding: 0.5px;
+    width:38px;
+    height:38px;
 }
-
-.searchbar{
-    display: flex;
-    align-items: center;
-    border: 1px solid gainsboro;
-    border-radius: 20px;
-    width:425px;
-    height:36px;
-    padding: 4px 0px 4px 8px;
-    margin-left: 25px;
-    font-size: 15px;
-    outline: none;
-}
-
-.user-config{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 8px;
-}
-.user-config div{
-    display: flex;
-    flex-direction: row;
-}
-.user-config div > button{
+.hosting-urls > button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,17 +27,26 @@ nav svg{
     border-radius: 9999px;
     border: 0;
 }
-.user-config div > button:hover{
+.hosting-urls > button:hover{
     background-color: gainsboro;
 }
 
-.hosting-btn h2{
-    padding:7.5px 12px;
+.hosting-urls{
+    display: flex;
+    flex-direction: row;
 }
-.hosting-btn:hover{
+.hosting-url h2{
+    padding:7.5px 12px;
+    font-weight: 600;
+}
+.hosting-url:hover{
     border-radius: 20px;
     background-color: rgb(240 240 240);
     text-decoration: none;
+}
+.hosting-url .active{
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 .more-menu {
@@ -75,7 +63,7 @@ nav svg{
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
     0 2px 6px 2px rgba(60, 64, 67, 0.149);
     z-index: 1;
-    transform: translateX(-90px);
+    transform: translateX(200px);
 }
 .more-menu a,
 .more-menu-button{

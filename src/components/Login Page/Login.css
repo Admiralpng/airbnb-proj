@@ -1,0 +1,69 @@
+.login-body{
+    display: flex;
+    justify-content: center;
+    background: url(https://news.airbnb.com/wp-content/uploads/sites/4/2020/09/Gov_Portal_Final_Delivery.jpg);
+    background-size: contain;
+    height: 892px;
+}
+.login-body div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 12px;
+    height: fit-content;
+    width: 450px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 40px;
+    transform: translateY(30%);
+}
+.login-body div svg{
+    width:50px;
+    height:50px;
+    color:#FF385C;
+    fill:#FF385C;
+    padding:0.5px;
+}
+.login-body div h1{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.login-body form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+}
+.login-body input{
+    outline: #FF385C;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid gainsboro;
+    font-size: 16px;
+    width: 315px;
+}
+.login-body div span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+}
+.login-body div button{
+    width: 150px;
+    padding: 10px;
+    border: 0;
+    border-radius: 15px;
+    background-color: #FF385C;
+    font-size: 14px;
+    font-weight: 600;
+}
+.login-body div button:hover{
+    background-color: #ff607d;
+    transition: ease 200ms;
+}

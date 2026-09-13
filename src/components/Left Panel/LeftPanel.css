@@ -20,31 +20,56 @@
     justify-content: space-between;
     transition: ease-in-out 120ms;
 }
-.left-panel:hover{
-    background: #FF385C;
-    background: linear-gradient(1deg, rgba(255, 56, 92, 1) -2%, rgba(255, 214, 221, 0) 15%);
-}
-.left-panel button{
+
+.left-panel a{
     display: flex;
     flex-direction: row;
-    align-items: center;
     font-size: 14px;
     border:0;
     background:none;
     padding: 5px 0px;
 }
-.left-panel button:hover{
+.left-panel a:hover{
     transform: scale(1.1);
     transition: ease-in-out 100ms;
+    text-decoration: none;
 }
-.left-panel button img{
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
+.left-panel a img{
+    width: 36px;
+    height: 36px;
     image-rendering: optimizeQuality;
 }
-.left-panel button span{
-    font-weight: 600;
+.left-panel a span{
+    font-size: 15px;
+    font-weight: 700;
     margin-top: 8px;
     transition: ease-in-out 400ms;
+    padding-top: 2px;
+}
+
+.left-panel > button{
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    border:0;
+    background:none;
+    padding: 5px 0px;
+    cursor: pointer;
+}
+.left-panel > button:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 100ms;
+    text-decoration: none;
+}
+.left-panel > button img{
+    width: 36px;
+    height: 36px;
+    image-rendering: optimizeQuality;
+}
+.left-panel > button span{
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 8px;
+    transition: ease-in-out 400ms;
+    padding-top: 2px;
 }
