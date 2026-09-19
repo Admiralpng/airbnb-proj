@@ -1,0 +1,132 @@
+/* General */
+
+@media (max-width: 667px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 15px;
+    }
+
+
+    /* Main */
+
+
+    main> :nth-child(2) {
+        padding: 0px 16px;
+    }
+
+
+    /* Footer */
+
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #f7f7f7;
+        padding: 2px;
+    }
+
+    .footer ul {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 48px;
+        column-gap: 24px;
+        padding: 0px 20px;
+    }
+
+    .faq-column {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 24px 0px;
+        width: 100%;
+    }
+
+    .faq-column span {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .faq-column>* {
+        font-size: 14px;
+        margin: 10px 0px;
+    }
+
+    .footer section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        row-gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    /* Home Page */
+
+
+    .home-page {
+        margin-top: 16px;
+    }
+
+    .home-page section h1 {
+        margin-left: 16px;
+        font-size: 18px;
+    }
+
+    .home-page section> :nth-child(2) {
+        padding: 16px;
+        margin-left: 0;
+    }
+
+
+    /* Booking-Modal */
+
+
+    .modal-bookings {
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 16px);
+        margin: 8px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .booking-tabs button {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .booking-card {
+        padding: 12px 36px 12px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .booking-card>img {
+        width: 100%;
+        height: 140px;
+    }
+
+    .booking-remove {
+        top: 8px;
+        right: 8px;
+    }
+
+    .booking-list {
+        max-height: 300px;
+    }
+
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import "./Login.css";
-import "./ResponsiveLoginPage.css";
+import "../../Responsive Styles/ResponsiveLoginPage.css";
+
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const reducer = (state, action) => {

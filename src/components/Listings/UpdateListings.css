@@ -1,0 +1,420 @@
+.edit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(211, 211, 211, 0.6);
+  z-index: 1001;
+}
+
+.edit-modal-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(500px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 24px;
+  overflow: hidden;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.edit-modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #131212;
+}
+
+.edit-close-btn {
+  width: 26px;
+  height: 26px;
+  padding: 2px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: white;
+  color: #555;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-close-btn:hover {
+  background: #555;
+  color: white;
+}
+
+.edit-close-btn svg {
+  width: 20px;
+  height: 20px;
+  transform: translateX(-1px) translateY(-1px);
+  color: #222;
+  fill: currentColor;
+}
+
+.edit-slide-indicators {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.edit-slide-dot {
+  padding: 4px 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  color: #555;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 200ms ease;
+}
+
+.edit-slide-dot:hover {
+  border-color: #aaa;
+}
+
+.edit-slide-dot.active {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+.edit-slides-viewport {
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  min-height: 260px;
+}
+
+.edit-slides-track {
+  display: flex;
+  transition: transform 0.28s ease;
+}
+
+.edit-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+
+.edit-slide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.edit-slide-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #131212;
+  margin: 0 0 4px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.edit-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.edit-field input[type="text"],
+.edit-field input[type="number"],
+.edit-field select,
+.edit-field textarea {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 150ms ease;
+  width: 100%;
+}
+
+.edit-field input:focus,
+.edit-field select:focus,
+.edit-field textarea:focus {
+  border-color: #222;
+}
+
+.edit-field textarea {
+  resize: vertical;
+}
+
+.edit-field select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+.edit-error {
+  color: #d93025;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.edit-image-upload {
+  position: relative;
+  width: 100%;
+  min-height: 120px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edit-image-upload:hover {
+  border-color: #999;
+}
+
+.edit-file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.edit-image-preview {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.edit-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #888;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.edit-image-placeholder.small {
+  padding: 16px;
+  font-size: 12px;
+  min-height: 80px;
+}
+
+.edit-file-name {
+  font-size: 12px;
+  color: #555;
+}
+
+.edit-layout-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edit-layout-image-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.edit-layout-image-item .edit-image-upload {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  min-height: 0;
+}
+
+.edit-layout-image-item .edit-image-preview {
+  width: 80px;
+  height: 80px;
+  max-height: 80px;
+  border-radius: 8px;
+}
+
+.edit-remove-image-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: #d93025;
+  color: white;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.edit-remove-image-btn:hover {
+  background: #b5261e;
+}
+
+.edit-add-image-btn {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background: none;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: border-color 150ms ease;
+}
+
+.edit-add-image-btn:hover {
+  border-color: #999;
+}
+
+.edit-slide-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.edit-slide-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-slide-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: #222;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease;
+}
+
+.edit-slide-arrow:hover {
+  background: #f0f0f0;
+}
+
+.edit-slide-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.edit-slide-submit {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-submit-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 150ms ease, background 150ms ease;
+}
+
+.edit-submit-btn:hover:not(:disabled) {
+  background: #444;
+}
+
+.edit-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.edit-remove-section {
+  width: 100%;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-remove-btn {
+  padding: 8px 20px;
+  border: 1px solid #d93025;
+  border-radius: 8px;
+  background: white;
+  color: #d93025;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.edit-remove-btn:hover {
+  background: #d93025;
+  color: white;
+}
+
+.edit-review {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.edit-review-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.edit-review-row strong {
+  color: #555;
+  font-weight: 600;
+}
+
+.edit-review-row span {
+  color: #222;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}

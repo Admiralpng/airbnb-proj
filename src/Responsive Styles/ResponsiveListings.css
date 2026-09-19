@@ -1,0 +1,86 @@
+@media (max-width: 667px) {
+
+    /* Listings file */
+
+    .listing-array {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        height: fit-content;
+    }
+
+    .arrow-nav {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+        position: relative;
+        top: 50%;
+        transform: translateY(120px) translateX(0);
+        height: fit-content;
+        margin-left: 15px;
+    }
+
+    .scroll-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 9999px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .scroll-arrow svg {
+        width: 34px;
+        height: 34px;
+    }
+
+    .listing-box-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        row-gap: 35px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-x: hidden;
+        white-space: nowrap;
+        mask-image: linear-gradient(to right, black 98%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 98%, transparent 100%);
+        height: fit-content;
+        padding: 0px 5px;
+        padding-bottom: 45px;
+        border-bottom: 1px solid #ddd;
+    }
+
+}
+
+@media (min-width: 668px) and (max-width: 1024px) {
+    .arrow-nav {
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+        position: relative;
+        top: 50%;
+        transform: translateY(120px) translateX(0);
+        height: fit-content;
+        margin-left: 15px;
+        margin-top: -22.5px;
+    }
+
+    .scroll-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 9999px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .scroll-arrow svg {
+        width: 34px;
+        height: 34px;
+    }
+}

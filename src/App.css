@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -7,108 +7,119 @@
 
 /* General */
 
-main > :nth-child(3){
-    padding: 0px 72px 0px 95px;
+main> :nth-child(2) {
+    padding: 0px 72px 0px 128px;
 }
 
-h1{
+h1 {
     color: #131212;
     font-size: 20px;
 }
-h2{
+
+h2 {
     font-weight: 700;
     font-size: 16px;
 }
 
-svg{
-    padding:2px;
+svg {
+    padding: 2px;
 }
-svg:hover{
-    padding:0.5px;
+
+svg:hover {
+    padding: 0.5px;
     transition: ease 200ms;
 }
 
-a{
+a {
     text-decoration: none;
-    color:black;
+    color: black;
     width: fit-content;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
 
-button:hover{
+button:hover {
     transition: ease 200ms;
 }
+
 /* footer */
 
-.footer{
-    display:flex;
+.footer {
+    bottom: 0;
+    display: flex;
     justify-content: center;
     flex-direction: column;
     background-color: #f7f7f7;
     padding: 24px 48px;
+    width: 100%;
 }
 
-.footer ul{
-    display:flex;
+.footer ul {
+    display: flex;
     flex-direction: row;
-    margin-bottom:48px;
+    margin-bottom: 48px;
     column-gap: 24px;
     padding: 0px 50px 0px 156px;
 }
 
-.faq-column{
-    display:flex;
+.faq-column {
+    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     padding: 24px 0px;
-    width:100%;
+    width: 100%;
 }
-.faq-column span{
+
+.faq-column span {
     font-weight: 600;
     margin-bottom: 5px;
 }
-.faq-column > *{
+
+.faq-column>* {
     font-size: 14px;
-    margin:10px 0px;
+    margin: 10px 0px;
 }
 
-.footer section{
+.footer section {
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    width:100%;
+    justify-content: space-between;
+    width: 100%;
     border-top: 1px solid gainsboro;
-    padding-top:25px;
+    padding-top: 25px;
 }
 
-.socials-btns{
+.socials-btns {
     display: flex;
     float: right;
     flex-direction: row;
     align-items: center;
     justify-content: right;
 }
-.socials-btns button{
+
+.socials-btns button {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 5px;
     border-radius: 9999px;
-    width:34px;
-    padding:0px;
-    height:34px;
-    border:0px;
+    width: 34px;
+    padding: 0px;
+    height: 34px;
+    border: 0px;
 }
-.socials-btns button:hover{
+
+.socials-btns button:hover {
     background-color: gainsboro;
 }
-.socials-btns button > a{
+
+.socials-btns button>a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width:26px;
-    height:26px;
+    width: 26px;
+    height: 26px;
 }

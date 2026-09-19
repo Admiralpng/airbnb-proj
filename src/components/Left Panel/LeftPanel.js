@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import "./LeftPanel.css"
+import "./LeftPanel.css";
+import "../../Responsive Styles/ResponsiveLeftPanel.css";
 
 export const LeftPanel = ({ onOpenBookings }) => {
   const [panelWidth, setPanelWidth] = useState (80)

@@ -1,0 +1,82 @@
+@media (max-width: 667px) {
+    .left-panel {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        transform: none;
+        min-width: 100%;
+        max-height: 40px;
+        backdrop-filter: blur(8px);
+        background: #FF385C;
+        border: 2px solid #FF385C;
+        border-top: 1px solid #FF385C;
+        border-left: 2px solid #FF385C;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-bottom-right-radius: 0px;
+        margin: 0px;
+        padding: 30px 10px;
+        justify-content: space-between;
+        transition: ease-in-out 120ms;
+    }
+
+    .left-panel a {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        border: 0;
+        background: none;
+        padding: 5px 0px;
+    }
+
+    .left-panel a:hover {
+        transform: scale(1.1);
+        transition: ease-in-out 100ms;
+        text-decoration: none;
+    }
+
+    .left-panel a img {
+        width: 32px;
+        height: 32px;
+        image-rendering: optimizeQuality;
+    }
+
+    .left-panel a span {
+        display: none;
+    }
+
+    .left-panel>button {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        border: 0;
+        background: none;
+        padding: 5px 0px;
+        cursor: pointer;
+    }
+
+    .left-panel>button:hover {
+        transform: scale(1.1);
+        transition: ease-in-out 100ms;
+        text-decoration: none;
+    }
+
+    .left-panel>button img {
+        width: 32px;
+        height: 32px;
+        image-rendering: optimizeQuality;
+    }
+
+    .left-panel>button span {
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 8px;
+        transition: ease-in-out 400ms;
+        padding-top: 2px;
+    }
+}

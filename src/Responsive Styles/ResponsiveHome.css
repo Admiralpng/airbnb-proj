@@ -1,0 +1,16 @@
+@media (max-width: 667px) {
+    .home-page section h1 {
+        margin-left: 14px;
+    }
+}
+
+@media (min-width: 668px) and (max-width: 1024px) {
+
+    .home-page section {
+        margin-left: 10px;
+    }
+
+    .home-page section> :nth-child(2) {
+        margin-left: 24px;
+    }
+}

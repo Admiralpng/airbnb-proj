@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import './NotFound.css'
+import '../../Responsive Styles/ResponsiveNotFound.css'
 
 export const NotFound = () => {
   return (

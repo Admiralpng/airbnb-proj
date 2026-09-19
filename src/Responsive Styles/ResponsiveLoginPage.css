@@ -1,0 +1,33 @@
+@media (max-width: 667px) {
+    .login-body {
+        height: auto;
+        min-height: 100vh;
+        padding: 24px 16px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-body div {
+        width: 100%;
+        max-width: 100%;
+        padding: 24px;
+        transform: none;
+        margin-top: 40px;
+    }
+
+    .login-body div h1 {
+        font-size: 20px;
+    }
+
+    .login-body input {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .login-body div button {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+}

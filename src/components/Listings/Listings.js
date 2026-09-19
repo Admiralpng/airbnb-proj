@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Listings.css";
+import "../../Responsive Styles/ResponsiveListings.css";
 import { ListingInfo } from "./ListingInfo";
 import {
   favoritesChangedEvent,
@@ -13,7 +14,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
-export const Listings = () => {
+export const Listings = ({ location }) => {
+  const displayedListings = location
+    ? listings
+        .filter((listing) => listing.location === location)
+        .sort((a, b) => a.location.localeCompare(b.location))
+    : listings;
   const [favorites, setFavorites] = useState(getStoredFavorites);
 
   useEffect(() => {
@@ -71,7 +77,7 @@ export const Listings = () => {
   return (
     <div className="listing-array">
       <div className="listing-box-container">
-        {listings.map((listing) => (
+        {displayedListings.map((listing) => (
           <Link
             to={`/viewlisting/${listing.id}`}
             className="listing-box"

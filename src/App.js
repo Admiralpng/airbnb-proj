@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Redirect, Switch, useLocation } from "react-router-dom";
 import "./App.css";
+import "./Responsive Styles/ResponsiveMobile.css";
+import "./Responsive Styles/ResponsiveTablet.css";
 import { Home } from "./components/Home Page/Home";
 import { LeftPanel } from "./components/Left Panel/LeftPanel";
 import { Listings } from "./components/Listings/Listings";

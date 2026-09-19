@@ -1,0 +1,24 @@
+@media (max-width: 667px) {
+    .not-found>a {
+        padding: 24px 16px;
+    }
+
+    .not-found img {
+        border-radius: 12px;
+    }
+
+    .not-found div {
+        width: 90%;
+        top: 100px;
+        padding: 20px 16px 0;
+    }
+
+    .not-found>div h1 {
+        font-size: 24px;
+    }
+
+    .not-found>div p {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+}

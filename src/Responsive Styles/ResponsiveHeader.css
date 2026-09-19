@@ -1,0 +1,51 @@
+@media (max-width: 667px) {
+    .navbar {
+        min-width: 350px;
+        width: 100%;
+        padding: 20px 18px 15px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .searchbar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+        order: 3;
+    }
+
+    .user-config {
+        gap: 4px;
+    }
+
+    .user-config div>button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hosting-btn h2 {
+        display: none;
+    }
+
+    .hosting-btn:hover {
+        border-radius: 50%;
+        padding: 8px;
+    }
+
+    .more-menu {
+        right: 16px;
+        transform: none;
+        top: 55px;
+    }
+}
+
+@media (min-width: 668px) and (max-width: 1024px) {
+    .navbar {
+        min-width: 350px;
+        width: 100%;
+        padding: 20px 25px 15px;
+    }
+}

@@ -1,0 +1,161 @@
+@media (max-width: 667px) {
+
+    .hosting-nav {
+        padding: 12px 16px;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hosting-nav>a {
+        width: 32px;
+        height: 32px;
+    }
+
+    .hosting-urls>button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hosting-url h2 {
+        order: 3;
+    }
+
+    .hosting-url:hover {
+        border-radius: 50%;
+        padding: 8px;
+    }
+
+    .hosting-urls>.more-menu {
+        right: 16px;
+        transform: none;
+        top: 55px;
+    }
+
+    .host-main {
+        padding: 0 8px;
+        margin-top: 16px;
+    }
+
+    .host-main div:first-child {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px 12px;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .host-main div:first-child h1 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .host-main div:first-child button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .custom-listing-array {
+        padding: 24px 0;
+        column-gap: 12px;
+    }
+
+    .new-listing {
+        min-width: 280px;
+        min-height: 320px;
+    }
+
+    .host-welcome {
+        min-height: auto;
+        padding: 32px 16px;
+    }
+
+    .welcome-content h1 {
+        font-size: 24px;
+    }
+
+    .welcome-content p {
+        font-size: 16px;
+    }
+
+    .welcome-content a {
+        transform: none;
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+
+    .welcome-content img {
+        max-width: 100%;
+    }
+
+
+    /* Listing-Modal */
+
+
+    .edit-modal-container {
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 16px);
+        margin: 8px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .edit-modal-header h2 {
+        font-size: 16px;
+    }
+
+    .edit-slide-indicators {
+        gap: 4px;
+    }
+
+    .edit-slide-dot {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+
+    .edit-field input[type="text"],
+    .edit-field input[type="number"],
+    .edit-field select,
+    .edit-field textarea {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .edit-layout-image-item {
+        width: 70px;
+        height: 70px;
+    }
+
+    .edit-layout-image-item .edit-image-upload,
+    .edit-layout-image-item .edit-image-preview {
+        width: 70px;
+        height: 70px;
+    }
+
+    .edit-add-image-btn {
+        width: 70px;
+        height: 70px;
+    }
+
+    .edit-slide-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .edit-slide-submit {
+        justify-content: center;
+    }
+
+    .edit-submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+@media (min-width: 668px) and (max-width: 1024px) {
+    .host-main {
+        padding: 0 24px;
+        margin-top: 16px;
+    }
+}

@@ -1,11 +1,20 @@
-.home-page{
+.home-page {
     margin-top: 24px;
 }
-.home-page section h1{
-    margin-left:40px;
-    height:fit-content;
+
+.home-page section h1 {
+    margin-left: 40px;
+    height: fit-content;
 }
-.home-page section > :nth-child(2){
+
+.home-page section> :nth-child(2) {
     padding: 24px;
     margin-left: 12px;
+}
+
+@media (max-width: 1024px) {
+    .home-page section> :nth-child(2) {
+        padding: 12px;
+        margin-left: 0px;
+    }
 }

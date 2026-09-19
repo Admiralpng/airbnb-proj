@@ -1,0 +1,389 @@
+/* General */
+
+@media (min-width: 668px) and (max-width: 1024px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+
+    /* Main */
+
+
+    main> :nth-child(2) {
+        padding: 0px 32px 0px 48px;
+    }
+
+
+    /* Header */
+
+
+    .navbar {
+        padding: 16px 24px 16px 32px;
+    }
+
+    .searchbar {
+        width: 320px;
+        margin-left: 16px;
+    }
+
+    .user-config {
+        column-gap: 6px;
+    }
+
+    .user-config div>button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .hosting-btn h2 {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .more-menu {
+        transform: translateX(-60px);
+        top: 58px;
+    }
+
+
+    /* Listings file */
+
+    .listing-array {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        height: fit-content;
+    }
+
+    .arrow-nav {
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+        position: relative;
+        top: 50%;
+        transform: translateY(120px) translateX(0);
+        height: fit-content;
+        margin-left: 15px;
+    }
+
+    .scroll-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 9999px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .scroll-arrow svg {
+        width: 34px;
+        height: 34px;
+    }
+
+    .listing-box-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        row-gap: 20px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-x: hidden;
+        white-space: nowrap;
+        mask-image: linear-gradient(to right, black 98%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 98%, transparent 100%);
+        height: fit-content;
+        padding: 0px 5px;
+        padding-bottom: 45px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* ViewListings */
+
+
+    .view-listing {
+        padding: 24px 48px 0px 64px;
+    }
+
+    .listing-viewbox {
+        flex-direction: column;
+        padding: 48px 0 64px;
+        column-gap: 0;
+        row-gap: 24px;
+    }
+
+    .listing-preview>img {
+        width: 100%;
+        max-height: 340px;
+    }
+
+    .img-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-listing {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .book-listing section {
+        width: 100%;
+        padding: 16px 20px;
+    }
+
+    .booking-details {
+        position: static;
+        transform: none;
+        margin-top: 16px;
+    }
+
+    .anemities,
+    .booking-calculator {
+        width: 100%;
+    }
+
+    .anemities ul {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .arrow-nav {
+        display: none;
+    }
+
+    .listing-box-container {
+        padding-bottom: 32px;
+    }
+
+    .listing-box>div>span:first-child {
+        transform: translateX(10px);
+    }
+
+    .heart {
+        transform: translateX(280px) translateY(190px);
+    }
+
+
+    /* Listing-Modal */
+
+
+    .edit-modal-container {
+        width: min(480px, calc(100vw - 48px));
+        max-height: calc(100vh - 48px);
+        padding: 20px;
+    }
+
+    .edit-modal-header h2 {
+        font-size: 17px;
+    }
+
+    .edit-slide-dot {
+        padding: 3px 9px;
+        font-size: 10px;
+    }
+
+    .edit-field input[type="text"],
+    .edit-field input[type="number"],
+    .edit-field select,
+    .edit-field textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .edit-layout-image-item {
+        width: 75px;
+        height: 75px;
+    }
+
+    .edit-layout-image-item .edit-image-upload,
+    .edit-layout-image-item .edit-image-preview {
+        width: 75px;
+        height: 75px;
+    }
+
+    .edit-add-image-btn {
+        width: 75px;
+        height: 75px;
+    }
+
+
+    /* Booking-Modal */
+
+
+    .modal-bookings {
+        width: min(450px, calc(100vw - 48px));
+        max-height: calc(100vh - 48px);
+        padding: 20px;
+    }
+
+    .booking-tabs button {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .booking-card {
+        padding: 14px 42px 14px 14px;
+    }
+
+    .booking-card>img {
+        width: 92px;
+        height: 76px;
+    }
+
+
+    /* Login Page */
+
+
+    .login-body {
+        height: auto;
+        min-height: 100vh;
+        padding: 32px 24px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-body div {
+        width: 400px;
+        padding: 32px;
+        transform: translateY(20%);
+    }
+
+    .login-body div h1 {
+        font-size: 21px;
+    }
+
+    .login-body input {
+        width: 280px;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .login-body div button {
+        width: 140px;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+
+    /* Not-Found */
+
+
+    .not-found>a {
+        padding: 40px 32px;
+    }
+
+    .not-found img {
+        border-radius: 16px;
+    }
+
+    .not-found div {
+        width: 500px;
+        top: 130px;
+        padding: 24px 32px 0;
+    }
+
+    .not-found>div h1 {
+        font-size: 28px;
+    }
+
+    .not-found>div p {
+        font-size: 17px;
+        padding: 0 16px;
+    }
+
+
+    /* Hosting Page */
+
+
+    .hosting-nav {
+        padding: 16px 24px 16px 32px;
+    }
+
+    .hosting-nav>a {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hosting-nav>svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hosting-urls>button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .hosting-url h2 {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .hosting-urls>.more-menu {
+        transform: translateX(150px);
+        top: 58px;
+    }
+
+    .host-main {
+        padding: 0 48px 0 64px;
+        margin-top: 20px;
+    }
+
+    .host-main div:first-child h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .host-main div:first-child button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .custom-listing-array {
+        padding: 28px 5px;
+        column-gap: 16px;
+    }
+
+    .new-listing {
+        min-width: 400px;
+        min-height: 360px;
+    }
+
+    .host-welcome {
+        min-height: 50vh;
+        padding: 40px 24px;
+    }
+
+    .welcome-content h1 {
+        font-size: 28px;
+    }
+
+    .welcome-content p {
+        font-size: 17px;
+    }
+
+    .welcome-content a {
+        transform: translateY(-40px);
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+
+    .welcome-content img {
+        max-width: 600px;
+    }
+}
