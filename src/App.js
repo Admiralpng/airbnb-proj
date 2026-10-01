@@ -10,6 +10,8 @@ import { ViewListing } from "./components/Listings/ViewListing";
 import { Header } from "./components/Header/Header";
 import { NotFound } from "./components/Not Found Page/NotFound";
 import { Login } from "./components/Login Page/Login";
+import { Locations } from "./components/Locations/Locations";
+import { LocationsModal } from "./components/Locations/LocationModal";
 import { Bookings } from "./components/Listings/StoredEvents/Bookings";
 import { Hosting } from "./components/Login Page/Hosting";
 import AuthContext from "./App Context/authContext";
@@ -22,6 +24,7 @@ const AUTH_KEY = "User Logged in";
 
 function App() {
   const [bookingsModalOpen, setBookingsModalOpen] = useState(false);
+  const [locationsModalOpen, setLocationsModalOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -45,6 +48,9 @@ function App() {
   const openBookings = () => setBookingsModalOpen(true);
   const closeBookings = () => setBookingsModalOpen(false);
 
+  const openLocations = () => setLocationsModalOpen(true);
+  const closeLocations = () => setLocationsModalOpen(false);
+
   const location = useLocation();
   const isHosting = location.pathname.startsWith("/hosting");
 
@@ -54,7 +60,12 @@ function App() {
         <Header onOpenBookings={openBookings} onLogOut={logOutHandler} />
       )}
       <main>
-        {!isHosting && <LeftPanel onOpenBookings={openBookings} />}
+        {!isHosting && (
+          <LeftPanel
+            onOpenBookings={openBookings}
+            onSelectLocation={openLocations}
+          />
+        )}
         <Switch>
           <Route path="/" exact>
             <Redirect to="/home" />
@@ -70,6 +81,9 @@ function App() {
           </Route>
           <Route path="/hosting">
             <Hosting onLogOut={logOutHandler} />
+          </Route>
+          <Route path="/locations/:location">
+            <Locations />
           </Route>
           <Route path="*">
             <Redirect to="/404pagenotfound" />
@@ -218,6 +232,9 @@ function App() {
         )}
       </main>
       {bookingsModalOpen && <Bookings onClose={closeBookings} />}
+      {locationsModalOpen && (
+        <LocationsModal onClose={closeLocations} />
+      )}
     </AuthContext.Provider>
   );
 }

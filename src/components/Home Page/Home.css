@@ -2,6 +2,10 @@
     margin-top: 24px;
 }
 
+.home-page section {
+    padding-left: 136px;
+}
+
 .home-page section h1 {
     margin-left: 40px;
     height: fit-content;
@@ -12,9 +16,11 @@
     margin-left: 12px;
 }
 
-@media (max-width: 1024px) {
-    .home-page section> :nth-child(2) {
-        padding: 12px;
-        margin-left: 0px;
+@media (max-width: 667px) {
+    .home-page section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
     }
 }

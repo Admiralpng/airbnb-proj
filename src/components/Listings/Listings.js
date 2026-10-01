@@ -75,7 +75,7 @@ export const Listings = ({ location }) => {
   };
 
   return (
-    <div className="listing-array">
+    <div className="listing-array" id="listings">
       <div className="listing-box-container">
         {displayedListings.map((listing) => (
           <Link

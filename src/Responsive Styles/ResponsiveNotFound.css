@@ -9,12 +9,13 @@
 
     .not-found div {
         width: 90%;
-        top: 100px;
+        top: 160px;
         padding: 20px 16px 0;
     }
 
     .not-found>div h1 {
         font-size: 24px;
+        margin-bottom: 70px;
     }
 
     .not-found>div p {

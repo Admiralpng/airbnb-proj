@@ -1,12 +1,12 @@
-.listing-array{
-    display:flex;
+.listing-array {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
     height: fit-content;
 }
 
-.arrow-nav{
+.arrow-nav {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
@@ -14,9 +14,10 @@
     top: 50%;
     transform: translateY(120px) translateX(0);
     height: fit-content;
-    margin-left:15px;
+    margin-left: 15px;
 }
-.scroll-arrow{
+
+.scroll-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,20 +26,21 @@
     width: 30px;
     height: 30px;
 }
-.scroll-arrow:hover{
+
+.scroll-arrow:hover {
     background-color: gainsboro;
     transition: ease-in-out 100ms;
 }
 
-.listing-box-container{
+#listings .listing-box-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     column-gap: 20px;
-    flex-wrap:nowrap;
+    flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-x:hidden;
+    overflow-x: hidden;
     white-space: nowrap;
     mask-image: linear-gradient(to right, black 98%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, black 98%, transparent 100%);
@@ -48,34 +50,38 @@
     border-bottom: 1px solid #ddd;
 }
 
-.listing-box{
-    width: fit-content;
+.listing-box {
+    min-width: fit-content;
     height: fit-content;
     border-radius: 10px;
     image-rendering: optimizeQuality;
-    padding:2px;
+    padding: 2px;
     border: 2px solid transparent;
 }
-.listing-box:hover{
+
+.listing-box:hover {
     text-decoration: none;
     transition: ease-in-out 200ms;
-    border:#FF385C 2px solid;
+    border: #FF385C 2px solid;
 }
 
-.listing-box div{
+.listing-box div {
     position: relative;
 }
-.listing-box > div > span{
+
+.listing-box>div>span {
     color: #FF385C;
-    position:absolute;
-    z-index: 1; 
+    position: absolute;
+    z-index: 1;
     top: 10px;
 }
-.listing-box div > span svg{
-    width:28px;
-    height:28px;
+
+.listing-box div>span svg {
+    width: 28px;
+    height: 28px;
 }
-.listing-box div > span:first-child{
+
+.listing-box div>span:first-child {
     color: black;
     font-size: 14px;
     font-weight: 600;
@@ -91,7 +97,7 @@
     min-width: fit-content;
 }
 
-.listing-box > div > span:first-child{
+.listing-box>div>span:first-child {
     color: black;
     font-size: 14px;
     font-weight: 600;
@@ -105,11 +111,13 @@
     transform: translateX(12px);
     min-width: fit-content;
 }
-.heart{
+
+.heart {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 34px;
-    height:34px;
-    transform: translateX(312px) translateY(212px);
+    height: 34px;
+    transform: translateX(355px) translateY(210px);
 }

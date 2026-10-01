@@ -4,19 +4,23 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import "./LeftPanel.css";
 import "../../Responsive Styles/ResponsiveLeftPanel.css";
 
-export const LeftPanel = ({ onOpenBookings }) => {
+export const LeftPanel = ({ onOpenBookings, onSelectLocation }) => {
   const [panelWidth, setPanelWidth] = useState (80)
   const [hiddenMenuBtn, setHiddenMenuBtn] = useState(false)
+  const [location, setLocation] = useState(false)
   
   const openBookings = onOpenBookings;
+  const selectLocation = onSelectLocation;
 
   const overPanelHandler = (event) => {
     setPanelWidth((prevWidth) => prevWidth + 85)
     setHiddenMenuBtn(true)
+    setLocation(true)
   };
   const outPanelHandler = (event) => {
     setPanelWidth((prevWidth) => prevWidth - 85);
     setHiddenMenuBtn(false);
+    setLocation(false);
   };
 
   const menuBtnSpacing = 10;
@@ -30,11 +34,11 @@ export const LeftPanel = ({ onOpenBookings }) => {
   
   return (
     <div className="left-panel" style={{width:`${panelWidth}px`}} onMouseOver={overPanelHandler} onMouseOut={outPanelHandler}>
-      <Link to="/locations">
+      <button type="button" aria-label="Locations" onClick={selectLocation}>
         <img src="https://cdn-icons-png.flaticon.com/128/3086/3086454.png" alt="Locations" />
         <span style={{display:`${hiddenMenuBtn ? 'flex' : 'none'}`, marginLeft: `${menuBtnSpacing}px`}} onMouseOver={overMenuBtnHandler} onMouseOut={outMenuBtnHandler}>Locations</span>
-      </Link>
-      <button type="button" aria-label='Saved Bookings' onClick={openBookings}>
+      </button>
+      <button type="button" aria-label="Saved Bookings" onClick={openBookings}>
         <img src="https://cdn-icons-png.flaticon.com/128/7322/7322293.png" alt="Bookings" />
         <span style={{display:`${hiddenMenuBtn ? 'flex' : 'none'}`, marginLeft: `${menuBtnSpacing}px`}} onMouseOver={overMenuBtnHandler} onMouseOut={outMenuBtnHandler}>Bookings</span>
       </button>

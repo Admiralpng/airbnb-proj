@@ -2,7 +2,14 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ListingInfo } from "./ListingInfo";
 import { listings } from "./listingsData";
+import {
+  favoritesChangedEvent,
+  getStoredFavorites,
+  saveFavorites,
+} from "./listingsData";
 import { nanoid } from "nanoid";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ViewListing.css";
 import "../../Responsive Styles/ResponsiveViewListing.css";
 
@@ -28,6 +35,25 @@ export const ViewListing = ({ onOpenBookings }) => {
         .toISOString()
         .split("T")[0],
   );
+  const [favorites, setFavorites] = useState(getStoredFavorites);
+
+  useEffect(() => {
+    const syncFavorites = () => setFavorites(getStoredFavorites());
+    window.addEventListener(favoritesChangedEvent, syncFavorites);
+    return () => {
+      window.removeEventListener(favoritesChangedEvent, syncFavorites);
+    };
+  }, []);
+
+  const toggleFavorite = (event, id) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const nextfavorites = favorites.includes(id)
+      ? favorites.filter((favoriteId) => favoriteId !== id)
+      : [...favorites, id];
+    saveFavorites(nextfavorites);
+    setFavorites(nextfavorites);
+  };
 
   const handleCheckInChange = (event) => {
     const nextCheckIn = event.target.value;
@@ -131,7 +157,19 @@ export const ViewListing = ({ onOpenBookings }) => {
       <div className="listing-viewbox">
         <div className="book-listing">
           <div className="listing-preview">
-            <img src={listing.image} alt={listing.title} />
+            <div className="listing-image-wrapper">
+              <img src={listing.image} alt={listing.title} />
+              <span
+                className="view-favorite"
+                onClick={(event) => toggleFavorite(event, listing.id)}
+              >
+                {favorites.includes(listing.id) ? (
+                  <FavoriteIcon />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
+              </span>
+            </div>
             <div className="img-layout">
               {listing.layoutimgs.map((image) => (
                 <img key={image.src} src={image.src} alt={listing.title} />

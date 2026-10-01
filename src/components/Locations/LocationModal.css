@@ -1,0 +1,72 @@
+.locations-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(211, 211, 211, 0.6);
+    z-index: 1000;
+}
+
+.locations-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: min(450px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 24px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.locations-modal h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.locations-modal p {
+    font-size: 14px;
+    color: #717171;
+    margin: 6px 0px 4px;
+}
+
+.locations-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.locations-modal-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.locations-modal-options .location-option {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.locations-modal-options .location-option:hover {
+    background-color: gainsboro;
+}

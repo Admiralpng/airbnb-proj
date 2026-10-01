@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./Header.css";
 import "../../Responsive Styles/ResponsiveHeader.css";
 import AuthContext from "../../App Context/authContext";
-import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -10,10 +10,24 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export const Header = ({ onOpenBookings, onLogOut }) => {
   const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const history = useHistory();
 
   const moreHandler = (event) => {
     event.stopPropagation();
     setShowMoreMenu((prev) => !prev);
+  };
+
+  const searchHandler = (event) => {
+    event.stopPropagation();
+    setShowSearchModal(true);
+  };
+
+  const closeSearchModal = () => setShowSearchModal(false);
+
+  const selectLocation = (location) => {
+    history.push(`/locations/${location}`);
+    closeSearchModal();
   };
 
   useEffect(() => {
@@ -24,6 +38,19 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMoreMenu]);
+
+  useEffect(() => {
+    if (!showSearchModal) return;
+
+    const closeModal = (event) => {
+      if (!event.target.closest(".searchbar-wrapper")) {
+        setShowSearchModal(false);
+      }
+    };
+    document.addEventListener("click", closeModal);
+
+    return () => document.removeEventListener("click", closeModal);
+  }, [showSearchModal]);
 
   return (
     <AuthContext.Consumer>
@@ -47,11 +74,31 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
                   ></path>
                 </svg>
               </Link>
-              <input
-                className="searchbar"
-                type="text"
-                placeholder="Search your vacay destination"
-              ></input>
+              <div className={`searchbar-wrapper ${showSearchModal ? "open" : ""}`}>
+                <input
+                  className="searchbar"
+                  type="text"
+                  placeholder="Search your vacay destination"
+                  onClick={() => setShowSearchModal((prev) => !prev)}
+                  readOnly
+                />
+                {showSearchModal && (
+                  <div className="location-dropdown">
+                    <div
+                      className="location-option"
+                      onClick={() => selectLocation("Cape Town")}
+                    >
+                      Cape Town
+                    </div>
+                    <div
+                      className="location-option"
+                      onClick={() => selectLocation("Johannesburg")}
+                    >
+                      Johannesburg
+                    </div>
+                  </div>)
+                }
+              </div>
               <div className="user-config">
                 {ctx.loggedIn ? (
                   <Link to="/hosting" className="hosting-btn">

@@ -10,7 +10,7 @@
         row-gap: 24px;
     }
 
-    .listing-preview>img {
+    .listing-image-wrapper img {
         width: 100%;
         max-height: 280px;
     }

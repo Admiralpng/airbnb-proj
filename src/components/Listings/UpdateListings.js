@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./UpdateListings.css";
 import { nanoid } from "nanoid";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   listings,
   addListing,
@@ -45,6 +46,10 @@ export const EditnAddListings = ({
   });
 
   const [errors, setErrors] = useState({});
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const locationDropdownRef = useRef(null);
+
+  const LOCATION_OPTIONS = ["Johannesburg", "Cape Town"];
 
   const isEditMode = !!listingToEdit;
 
@@ -81,6 +86,19 @@ export const EditnAddListings = ({
       setErrors({});
     }
   }, [isOpen, listingToEdit]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        locationDropdownRef.current &&
+        !locationDropdownRef.current.contains(event.target)
+      ) {
+        setShowLocationDropdown(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   const validate = useCallback(() => {
     const e = {};
@@ -218,16 +236,37 @@ export const EditnAddListings = ({
                 <span className="edit-error">{errors.title}</span>
               )}
             </div>
-            <div className="edit-field">
+            <div className="edit-field location-select-wrapper" ref={locationDropdownRef}>
               <label>Location</label>
-              <select
-                value={formData.location}
-                onChange={(e) => handleInputChange("location", e.target.value)}
+              <div
+                className="location-select"
+                onClick={() => setShowLocationDropdown((prev) => !prev)}
               >
-                <option value="">Select a location</option>
-                <option value="Johannesburg">Johannesburg</option>
-                <option value="Cape Town">Cape Town</option>
-              </select>
+                <input
+                  type="text"
+                  id="location-select-input"
+                  value={formData.location || ""}
+                  placeholder="Select a location"
+                  readOnly
+                />
+                <KeyboardArrowDownIcon className="location-select-icon" />
+              </div>
+              {showLocationDropdown && (
+                <div className="location-dropdown">
+                  {LOCATION_OPTIONS.map((loc) => (
+                    <div
+                      key={loc}
+                      className="location-option"
+                      onClick={() => {
+                        handleInputChange("location", loc);
+                        setShowLocationDropdown(false);
+                      }}
+                    >
+                      {loc}
+                    </div>
+                  ))}
+                </div>
+              )}
               {errors.location && (
                 <span className="edit-error">{errors.location}</span>
               )}

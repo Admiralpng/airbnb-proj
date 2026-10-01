@@ -1,9 +1,10 @@
-.listing{
-    width: 350px;
+.listing {
+    width: clamp(350px, 30vw, 400px);
     height: fit-content;
 }
-.listing > img{
-    width: 350px;
+
+.listing>img {
+    width: clamp(350px, 30vw, 400px);
     height: 145px;
     object-fit: cover;
     border-top-left-radius: 8px;
@@ -11,7 +12,7 @@
     image-rendering: optimizeQuality;
 }
 
-.listing-info{
+.listing-info {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -19,19 +20,20 @@
     padding: 8px 20px;
     border: 1px solid #ddd;
     border-top: none;
-    border-left:none;
-    border-right:none;
+    border-left: none;
+    border-right: none;
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.listing-title{
+.listing-title {
     font-size: 16px;
     margin-bottom: 5px;
 }
-.location{
+
+.location {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -39,7 +41,8 @@
     font-weight: 500;
     margin-bottom: 10px;
 }
-.location img{
+
+.location img {
     width: 20px;
     height: 20px;
     object-fit: cover;
@@ -47,25 +50,56 @@
     margin-right: 5px;
 }
 
-.product-price{
+.product-price {
     font-size: 16px;
 }
 
-.rating{
+.rating {
     display: flex;
     right: 10px;
     position: relative;
     margin: 10px 0px;
     min-width: fit-content;
 }
-.rating span{
+
+.rating span {
     display: flex;
     align-items: center;
-    font-weight:600;
+    font-weight: 600;
     bottom: -20;
     left: -160px;
     position: absolute;
 }
-.rating span > svg{
-    padding:0.5px;
+
+.rating span>svg {
+    padding: 0.5px;
+}
+
+
+@media (max-width: 667px) {
+
+    .listing {
+        width: clamp(300px, 30vw, 400px);
+        height: fit-content;
+    }
+
+    .listing>img {
+        width: clamp(300px, 30vw, 400px);
+        height: 145px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        image-rendering: optimizeQuality;
+    }
+
+    .listing-title {
+        font-size: 14px;
+        margin-bottom: 5px;
+        text-align: center;
+        text-wrap: wrap;
+    }
+
+    .rating span {
+        left: -100px;
+    }
 }

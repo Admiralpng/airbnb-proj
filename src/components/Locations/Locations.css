@@ -1,0 +1,61 @@
+.locations-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.locations-header {
+  margin-bottom: 30px;
+}
+
+.locations-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.locations-header p {
+  font-size: 20px;
+  color: #717171;
+}
+
+.locations-page .listing-array {
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.locations-page .listing-box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 20px 0px;
+}
+
+.locations-page .heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  z-index: 2;
+  transform: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 667px) {
+  .locations-page .heart {
+    transform: none !important;
+    right: 8px;
+    top: 8px;
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,9 +1,31 @@
-.view-listing{
+.view-listing {
     padding: 24px 72px 0px 95px;
-    height:fit-content;
+    height: fit-content;
 }
 
-.listing-viewbox{
+.listing-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.view-favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.listing-viewbox {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -11,20 +33,21 @@
     padding: 72px 0px 96px;
 }
 
-.book-listing{
+.book-listing {
     flex: 1 1 50%;
     max-width: 75%;
     min-width: 0;
 }
 
-.listing-preview{
-    display:flex;
+.listing-preview {
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     column-gap: 16px;
     align-content: center;
 }
-.listing-preview > img{
+
+.listing-image-wrapper img {
     width: 500px;
     height: 100%;
     max-height: 420px;
@@ -32,28 +55,31 @@
     border-radius: 12px;
     image-rendering: optimizeQuality;
 }
-.img-layout{
+
+.img-layout {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     row-gap: 8px;
     position: relative;
     top: 0;
-    height:fit-content;
+    height: fit-content;
 }
-.img-layout img{
+
+.img-layout img {
     width: 100%;
     max-height: 162.5px;
     object-fit: cover;
     border-radius: 8px;
     image-rendering: optimizeQuality;
 }
-.img-layout img:hover{
+
+.img-layout img:hover {
     transform: scale(1.01);
     transition: ease-in-out 200ms;
 }
 
-.book-listing section{
+.book-listing section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,7 +88,8 @@
     row-gap: 14px;
     min-width: fit-content;
 }
-.book-listing section > span{
+
+.book-listing section>span {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -70,7 +97,8 @@
     padding-top: 14px;
     margin-top: 2px;
 }
-.book-listing section > span img{
+
+.book-listing section>span img {
     width: 25px;
     height: 25px;
     object-fit: cover;
@@ -78,20 +106,20 @@
     margin-right: 5px;
 }
 
-.about-listing h2{
+.about-listing h2 {
     margin: 12px 0px;
-    font-weight:700;
+    font-weight: 700;
     font-size: 20px;
 }
 
-.booking-details{
-    position:absolute;
-    top:0;
-    right:50px;
+.booking-details {
+    position: absolute;
+    top: 0;
+    right: 50px;
     transform: translateY(14.15%);
 }
 
-.anemities{
+.anemities {
     border: 1px solid #ddd;
     border-radius: 12px;
     padding: 20px;
@@ -103,11 +131,13 @@
     margin-bottom: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.anemities h2{
+
+.anemities h2 {
     padding-bottom: 14px;
     border-bottom: 1px solid #ddd;
 }
-.anemities ul{
+
+.anemities ul {
     margin-top: 4px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -115,7 +145,8 @@
     row-gap: 8px;
     column-gap: 10px;
 }
-.anemities ul li{
+
+.anemities ul li {
     display: flex;
     flex-direction: row;
     column-gap: 10px;
@@ -124,7 +155,7 @@
     list-style: none;
 }
 
-.booking-calculator{
+.booking-calculator {
     display: flex;
     border: 1px solid #ddd;
     border-radius: 12px;
@@ -135,32 +166,36 @@
     flex-shrink: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.booking-calculator form{
+
+.booking-calculator form {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
-.booking-calculator form > :first-child{
+
+.booking-calculator form> :first-child {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: 6px;
 }
-.booking-calculator form :first-child > input{
+
+.booking-calculator form :first-child>input {
     text-align: center;
     margin-left: 12px;
-    border:0;
+    border: 0;
     width: fit-content;
     max-width: 50px;
     padding: 5px 8px;
     padding-left: 2px;
     font-size: 14px;
     font-weight: 600;
-    border:2px solid #FF385C;
+    border: 2px solid #FF385C;
     border-radius: 15px;
     outline: #FF385C;
 }
-#cancellation-event{
+
+#cancellation-event {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -168,7 +203,7 @@
     margin: 8px 0px;
 }
 
-.booking-calculator button{
+.booking-calculator button {
     background: white;
     border: 2px solid #FF385C;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -177,11 +212,13 @@
     font-size: 14px;
     font-weight: 600;
 }
-.booking-calculator button:hover{
-    background:#ff385d20;
+
+.booking-calculator button:hover {
+    background: #ff385d20;
     transition: ease-in-out 300ms;
 }
-.calendar{
+
+.calendar {
     padding: 10px 14px;
     border: 2px solid #ddd;
     border-top: 1px solid #ddd;
@@ -190,7 +227,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.trip-total{
+.trip-total {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -200,41 +237,46 @@
 }
 
 
-.listing-notfound{
-    display:flex;
+.listing-notfound {
+    display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
 }
-.listing-notfound > a{
+
+.listing-notfound>a {
     padding: 55px;
 }
-.listing-notfound img{
+
+.listing-notfound img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     image-rendering: optimizeQuality;
     border-radius: 20px;
 }
-.listing-notfound div{
+
+.listing-notfound div {
     position: relative;
-    height:fit-content;
-    padding:30px 40px 0px;
-    display:flex;
+    height: fit-content;
+    padding: 30px 40px 0px;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     position: absolute;
     z-index: 1;
-    width:550px;
+    width: 550px;
     top: 155px;
 }
-.listing-notfound > div h1{
-    color:white;
+
+.listing-notfound>div h1 {
+    color: white;
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 15px;
 }
-.listing-notfound > div p{
+
+.listing-notfound>div p {
     padding: 0px 20px;
     font-size: 18px;
     font-weight: 500;

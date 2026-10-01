@@ -8,7 +8,7 @@
 /* General */
 
 main> :nth-child(2) {
-    padding: 0px 72px 0px 128px;
+    padding-right: 24px;
 }
 
 h1 {
