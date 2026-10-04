@@ -161,8 +161,39 @@ export const EditnAddListings = ({
   };
 
   const removeLayoutImageSlot = (index) => {
-    const next = formData.layoutImagesData.filter((_, i) => i !== index);
-    handleInputChange("layoutImagesData", next);
+    const slot = formData.layoutSlots[index];
+    if (slot?.existing) {
+      setRemovedLayouts((prev) => [...prev, slot.existing]);
+    }
+    handleInputChange(
+      "layoutSlots",
+      formData.layoutSlots.filter((_, i) => i !== index),
+    );
+  };
+
+  const buildFormData = () => {
+    const data = new FormData();
+    data.append("title", formData.title.trim());
+    data.append("location", `${formData.location}, South Africa`);
+    data.append("address", formData.address.trim());
+    data.append("about", formData.about.trim());
+    data.append("price", String(Number(formData.price)));
+
+    if (formData.mainImageFile) {
+      data.append("image", formData.mainImageFile);
+    }
+
+    formData.layoutSlots.forEach((slot) => {
+      if (slot?.file) {
+        data.append("layoutimgs", slot.file);
+      }
+    });
+
+    if (removedLayouts.length) {
+      data.append("removedLayoutimgs", removedLayouts.join(","));
+    }
+
+    return data;
   };
 
   const handleSubmit = () => {
