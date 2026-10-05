@@ -1,26 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./UpdateListings.css";
-import { nanoid } from "nanoid";
+import { api, imageUrl } from "../../API";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {
-  listings,
-  addListing,
-  removeListing,
-  saveListings,
-} from "./listingsData";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 const SLIDE_LABELS = ["Details", "Photos", "Pricing", "Review"];
-
-const readFileAsDataURL = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
 
 export const EditnAddListings = ({
   isOpen,
@@ -32,6 +18,8 @@ export const EditnAddListings = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const trackRef = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -40,10 +28,12 @@ export const EditnAddListings = ({
     address: "",
     price: "",
     about: "",
-    mainImageData: null,
+    mainImageFile: null,
+    mainImagePreview: null,
     mainImageName: "",
-    layoutImagesData: [],
+    layoutSlots: [],
   });
+  const [removedLayouts, setRemovedLayouts] = useState([]);
 
   const [errors, setErrors] = useState({});
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
@@ -54,36 +44,43 @@ export const EditnAddListings = ({
   const isEditMode = !!listingToEdit;
 
   useEffect(() => {
-    if (isOpen) {
-      if (listingToEdit) {
-        setFormData({
-          title: listingToEdit.title || "",
-          location: listingToEdit.location?.replace(", South Africa", "") || "",
-          address: listingToEdit.address || "",
-          price: listingToEdit.price?.toString() || "",
-          about: listingToEdit.about || "",
-          mainImageData: listingToEdit.image || null,
-          mainImageName: "",
-          layoutImagesData:
-            listingToEdit.layoutimgs?.map((img) => ({
-              src: img.src,
-            })) || [],
-        });
-      } else {
-        setFormData({
-          title: "",
-          location: "",
-          address: "",
-          price: "",
-          about: "",
-          mainImageData: null,
-          mainImageName: "",
-          layoutImagesData: [],
-        });
-      }
-      setCurrentSlide(0);
-      setDirection(0);
-      setErrors({});
+    if (!isOpen) return;
+
+    setRemovedLayouts([]);
+    setSubmitError(null);
+    setCurrentSlide(0);
+    setDirection(0);
+    setErrors({});
+
+    if (listingToEdit) {
+      setFormData({
+        title: listingToEdit.title || "",
+        location:
+          listingToEdit.location?.replace(", South Africa", "") || "",
+        address: listingToEdit.address || "",
+        price: listingToEdit.price?.toString() || "",
+        about: listingToEdit.about || "",
+        mainImageFile: null,
+        mainImagePreview: imageUrl(listingToEdit.image) || null,
+        mainImageName: "",
+        layoutSlots: (listingToEdit.layoutimgs || []).map((filename) => ({
+          existing: filename,
+          file: null,
+          preview: imageUrl(filename),
+        })),
+      });
+    } else {
+      setFormData({
+        title: "",
+        location: "",
+        address: "",
+        price: "",
+        about: "",
+        mainImageFile: null,
+        mainImagePreview: null,
+        mainImageName: "",
+        layoutSlots: [],
+      });
     }
   }, [isOpen, listingToEdit]);
 
@@ -105,7 +102,7 @@ export const EditnAddListings = ({
     if (!formData.title.trim()) e.title = "Title is required";
     if (!formData.location) e.location = "Location is required";
     if (!formData.address.trim()) e.address = "Address is required";
-    if (!formData.mainImageData) e.mainImage = "Main image is required";
+    if (!formData.mainImagePreview) e.mainImage = "Main image is required";
     if (!formData.price || Number(formData.price) <= 0)
       e.price = "Valid price is required";
     if (!formData.about.trim()) e.about = "About is required";
@@ -130,34 +127,29 @@ export const EditnAddListings = ({
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleMainImageChange = async (event) => {
+  const handleMainImageChange = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    try {
-      const dataURL = await readFileAsDataURL(file);
-      handleInputChange("mainImageData", dataURL);
-      handleInputChange("mainImageName", file.name);
-    } catch (err) {
-      console.error("Error reading image:", err);
-    }
+    setFormData((prev) => ({
+      ...prev,
+      mainImageFile: file,
+      mainImagePreview: URL.createObjectURL(file),
+      mainImageName: file.name,
+    }));
+    setErrors((prev) => ({ ...prev, mainImage: undefined }));
   };
 
-  const handleLayoutImageChange = async (index, event) => {
+  const handleLayoutImageChange = (index, event) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    try {
-      const dataURL = await readFileAsDataURL(file);
-      const next = [...formData.layoutImagesData];
-      next[index] = { src: dataURL };
-      handleInputChange("layoutImagesData", next);
-    } catch (err) {
-      console.error("Error reading image:", err);
-    }
+    const next = [...formData.layoutSlots];
+    next[index] = { file, preview: URL.createObjectURL(file) };
+    handleInputChange("layoutSlots", next);
   };
 
   const addLayoutImageSlot = () => {
-    if (formData.layoutImagesData.length >= 4) return;
-    handleInputChange("layoutImagesData", [...formData.layoutImagesData, null]);
+    if (formData.layoutSlots.length >= 4) return;
+    handleInputChange("layoutSlots", [...formData.layoutSlots, null]);
   };
 
   const removeLayoutImageSlot = (index) => {
@@ -196,55 +188,59 @@ export const EditnAddListings = ({
     return data;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate()) return;
 
-    const listingId = "Event" + nanoid(5, "0123456789");
-    const listing = {
-      id: listingId,
-      location: `${formData.location}, South Africa`,
-      title: formData.title.trim(),
-      address: formData.address.trim(),
-      image: formData.mainImageData,
-      layoutimgs: formData.layoutImagesData.filter(Boolean),
-      price: Number(formData.price),
-      about: formData.about.trim(),
-      customId: true,
-    };
+    if (!isEditMode && !formData.mainImageFile) {
+      setErrors({ mainImage: "Main image is required" });
+      return;
+    }
 
-    if (isEditMode) {
-      const idx = listings.findIndex((l) => l.id === listingToEdit.id);
-      if (idx !== -1) {
-        listing.id = listingToEdit.id;
-        listing.customId = listingToEdit.customId || false;
-        listings[idx] = listing;
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const payload = buildFormData();
+      const { listing } = isEditMode
+        ? await api.upload(`/listings/${listingToEdit._id}`, payload, "PATCH")
+        : await api.upload("/listings", payload, "POST");
+
+      if (onListingSaved) {
+        onListingSaved(listing);
       }
-      saveListings(listings.filter((l) => l.customId));
-    } else {
-      addListing(listing);
-    }
 
-    if (isEditMode && onListingSaved) {
-      onListingSaved(listing);
-    } else if (!isEditMode && onListingSaved) {
-      onListingSaved(listing);
+      onClose();
+    } catch (err) {
+      setSubmitError(err.message);
+    } finally {
+      setSubmitting(false);
     }
-
-    onClose();
   };
 
-  const handleRemove = () => {
+  const handleRemove = async () => {
     if (!listingToEdit) return;
-    removeListing(listingToEdit.id);
-    if (onListingRemoved) onListingRemoved(listingToEdit.id);
-    onClose();
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await api.delete(`/listings/${listingToEdit._id}`);
+      if (onListingRemoved) {
+        onListingRemoved(listingToEdit._id);
+      }
+      onClose();
+    } catch (err) {
+      setSubmitError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const allFieldsFilled =
     formData.title.trim() &&
     formData.location &&
     formData.address.trim() &&
-    formData.mainImageData &&
+    formData.mainImagePreview &&
     formData.price &&
     Number(formData.price) > 0 &&
     formData.about.trim();
@@ -261,7 +257,7 @@ export const EditnAddListings = ({
                 type="text"
                 value={formData.title}
                 placeholder="Add a title for your listing"
-                onChange={(e) => handleInputChange("title", e.target.value)}
+                onChange={(event) => handleInputChange("title", event.target.value)}
               />
               {errors.title && (
                 <span className="edit-error">{errors.title}</span>
@@ -308,7 +304,7 @@ export const EditnAddListings = ({
                 type="text"
                 value={formData.address}
                 placeholder="Add an address"
-                onChange={(e) => handleInputChange("address", e.target.value)}
+                onChange={(event) => handleInputChange("address", event.target.value)}
               />
               {errors.address && (
                 <span className="edit-error">{errors.address}</span>
@@ -329,9 +325,9 @@ export const EditnAddListings = ({
                   onChange={handleMainImageChange}
                   className="edit-file-input"
                 />
-                {formData.mainImageData ? (
+                {formData.mainImagePreview ? (
                   <img
-                    src={formData.mainImageData}
+                    src={formData.mainImagePreview}
                     alt="Main"
                     className="edit-image-preview"
                   />
@@ -351,18 +347,18 @@ export const EditnAddListings = ({
             <div className="edit-field">
               <label>Additional Photos (max 4)</label>
               <div className="edit-layout-images">
-                {formData.layoutImagesData.map((img, index) => (
+                {formData.layoutSlots.map((slot, index) => (
                   <div key={index} className="edit-layout-image-item">
                     <div className="edit-image-upload">
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={(e) => handleLayoutImageChange(index, e)}
+                        onChange={(event) => handleLayoutImageChange(index, event)}
                         className="edit-file-input"
                       />
-                      {img && img.src ? (
+                      {slot && slot.preview ? (
                         <img
-                          src={img.src}
+                          src={slot.preview}
                           alt={`Layout ${index + 1}`}
                           className="edit-image-preview"
                         />
@@ -372,7 +368,7 @@ export const EditnAddListings = ({
                         </div>
                       )}
                     </div>
-                    {img && img.src && (
+                    {slot && slot.preview && (
                       <button
                         type="button"
                         className="edit-remove-image-btn"
@@ -383,7 +379,7 @@ export const EditnAddListings = ({
                     )}
                   </div>
                 ))}
-                {formData.layoutImagesData.length < 4 && (
+                {formData.layoutSlots.length < 4 && (
                   <button
                     type="button"
                     className="edit-add-image-btn"
@@ -407,7 +403,7 @@ export const EditnAddListings = ({
                 min="1"
                 value={formData.price}
                 placeholder="Price per guest"
-                onChange={(e) => handleInputChange("price", e.target.value)}
+                onChange={(event) => handleInputChange("price", event.target.value)}
               />
               {errors.price && (
                 <span className="edit-error">{errors.price}</span>
@@ -419,7 +415,7 @@ export const EditnAddListings = ({
                 value={formData.about}
                 placeholder="What makes this place special?"
                 rows="5"
-                onChange={(e) => handleInputChange("about", e.target.value)}
+                onChange={(event) => handleInputChange("about", event.target.value)}
               />
               {errors.about && (
                 <span className="edit-error">{errors.about}</span>
@@ -458,7 +454,7 @@ export const EditnAddListings = ({
               </div>
               <div className="edit-review-row">
                 <strong>Additional Photos:</strong>
-                <span>{formData.layoutImagesData.filter(Boolean).length}</span>
+                <span>{formData.layoutSlots.filter(Boolean).length}</span>
               </div>
             </div>
             {!allFieldsFilled && (
@@ -549,18 +545,24 @@ export const EditnAddListings = ({
             <button
               type="button"
               className="edit-submit-btn"
-              disabled={!allFieldsFilled}
+              disabled={!allFieldsFilled || submitting}
               onClick={handleSubmit}
             >
-              {isEditMode ? "Save Changes" : "Submit Listing"}
+              {submitting
+                ? "Saving..."
+                : isEditMode
+                  ? "Save Changes"
+                  : "Submit Listing"}
             </button>
           </div>
         </div>
+        {submitError && <span className="edit-error">{submitError}</span>}
         {isEditMode && (
           <div className="edit-remove-section">
             <button
               type="button"
               className="edit-remove-btn"
+              disabled={submitting}
               onClick={handleRemove}
             >
               Remove Listing
