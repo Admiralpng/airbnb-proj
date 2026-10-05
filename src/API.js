@@ -54,17 +54,27 @@ const request = async (path, { method = "GET", body, isForm = false } = {}) => {
 
   const text = await response.text();
   let payload = null;
+  let parseFailed = false;
   if (text) {
     try {
       payload = JSON.parse(text);
     } catch (error) {
-      payload = null;
+      parseFailed = true;
     }
   }
 
   if (!response.ok) {
     throw new ApiError(
       payload?.error || "Something went wrong",
+      response.status,
+    );
+  }
+
+  if (parseFailed || payload === null) {
+    throw new ApiError(
+      response.status === 200
+        ? "Received a non-JSON response from the server. Set REACT_APP_API_URL to your API origin, or exempt /api from the Netlify redirect rule."
+        : "Empty response from server",
       response.status,
     );
   }
