@@ -1,5 +1,9 @@
 export const TOKEN_KEY = "airbnbToken";
 
+const RAW_API_URL = process.env.REACT_APP_API_URL || "";
+
+export const API_BASE = RAW_API_URL.replace(/\/+$/, "");
+
 export class ApiError extends Error {
   constructor(message, status) {
     super(message);
@@ -39,7 +43,7 @@ const request = async (path, { method = "GET", body, isForm = false } = {}) => {
 
   let response;
   try {
-    response = await fetch(`/api${path}`, {
+    response = await fetch(`${API_BASE}/api${path}`, {
       method,
       headers,
       body: isForm ? body : body !== undefined ? JSON.stringify(body) : undefined,
@@ -82,5 +86,5 @@ export const imageUrl = (value) => {
   if (/^(https?:)?\/\//.test(value) || value.startsWith("data:")) {
     return value;
   }
-  return `/uploads/${value}`;
+  return `${API_BASE}/uploads/${value}`;
 };
