@@ -1,4 +1,65 @@
-# Getting Started with Create React App
+# Airbnb Capstone
+
+React frontend with an Express + MongoDB backend in `backend/`.
+
+## Running it
+
+Two processes are required.
+
+1. Backend:
+
+```
+cd backend
+npm install
+cp .env.example .env     # set MONGODB_URI and JWT_SECRET
+npm run seed             # inserts the 12 base listings if the collection is empty
+npm start                # http://localhost:5000
+```
+
+`npm run dev:local` starts the API against a throwaway in-memory MongoDB, which is useful when you have no Atlas access.
+
+2. Frontend, from the project root:
+
+```
+npm install
+npm start                # http://localhost:3000
+```
+
+`package.json` sets `"proxy": "http://localhost:5000"`, so `/api` and `/uploads` requests from the dev server reach the backend. If the backend is not running, listings fail to load with a message in the page instead of a build error.
+
+## Where things live
+
+- `backend/server.js` — app setup, CORS, JSON parsing, static `/uploads`, route mounting, Mongo connect
+- `backend/models/` — `User`, `Listing`, `Booking`
+- `backend/routes/` — `auth`, `listings`, `bookings`
+- `backend/middleware/auth.js` — `requireAuth`, `requireListingOwner`
+- `backend/seedListings.js` + `backend/seed.js` — the 12 base listings, unowned and read-only
+- `src/api.js` — fetch wrapper with bearer token and a status-carrying `ApiError`
+- `src/App Context/authContext.js` — `user`, `loggedIn`, `login`, `register`, `logout`, `refreshUser`
+- `src/App Context/listingsContext.js` — fetch-once listings catalog, one-time legacy `localStorage` clear
+- `src/components/Listings/favorites.js` — favorites stay in `localStorage`
+
+## API
+
+| Method | Route | Auth |
+|---|---|---|
+| POST | `/api/auth/register` | no, 409 if email exists |
+| POST | `/api/auth/login` | no, 404 unknown email, 401 wrong password |
+| GET | `/api/auth/me` | yes, 401 also signals expiry |
+| GET | `/api/listings` | no |
+| GET | `/api/listings/:id` | no, 404 if missing |
+| POST | `/api/listings` | yes, multipart, sets `owner` |
+| PATCH | `/api/listings/:id` | yes, owner only, else 403 |
+| DELETE | `/api/listings/:id` | yes, owner only, deletes files, keeps bookings |
+| GET | `/api/bookings` | yes, current user, newest first |
+| POST | `/api/bookings` | yes, computes `nights` and `total`, 409 on date overlap |
+| DELETE | `/api/bookings/:id` | yes, owner only, else 404 |
+
+Booking totals are computed server-side as `price * nights * guests`. Bookings denormalize title, location, image, and price so they still render after their listing is deleted.
+
+Known behavior: a booking whose listing was deleted links to a not-found listing page.
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

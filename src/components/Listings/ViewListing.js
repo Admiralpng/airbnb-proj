@@ -1,13 +1,9 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ListingInfo } from "./ListingInfo";
-import { listings } from "./listingsData";
-import {
-  favoritesChangedEvent,
-  getStoredFavorites,
-  saveFavorites,
-} from "./listingsData";
-import { nanoid } from "nanoid";
+import React, { useState, useContext, useEffect } from "react";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { useListings } from "../../App Context/listingsContext";
+import AuthContext from "../../App Context/authContext";
+import { useFavorites } from "./StoredEvents/Favorites";
+import { ApiError, api, imageUrl } from "../../API";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ViewListing.css";
@@ -19,15 +15,29 @@ const addDays = (dateString, days) => {
   return date.toISOString().split("T")[0];
 };
 
+const todayString = () => new Date().toISOString().split("T")[0];
+
+const dateOnly = (value) => String(value || "").slice(0, 10);
+
+const nightsBetween = (checkIn, checkOut) =>
+  Math.max(
+    0,
+    Math.round(
+      (new Date(dateOnly(checkOut)) - new Date(dateOnly(checkIn))) / 86400000,
+    ),
+  );
+
 export const ViewListing = ({ onOpenBookings }) => {
   const { id } = useParams();
-  const listing = useMemo(() => listings.find((l) => l.id === id), [id]);
+  const history = useHistory();
+  const { listings, loading, error } = useListings();
+  const { loggedIn } = useContext(AuthContext);
+  const { favorites, toggleFavorite } = useFavorites();
+  const listing = listings.find((l) => l._id === id);
   const [guestQty, setGuestsQty] = useState(1);
-  const [checkInDate, setCheckInDate] = useState(
-    () => new Date().toISOString().split("T")[0],
-  );
+  const [checkInDate, setCheckInDate] = useState(() => todayString());
   const [checkOutDate, setCheckOutDate] = useState(() =>
-    addDays(new Date().toISOString().split("T")[0], 1),
+    addDays(todayString(), 1),
   );
   const [cancellationDate, setCancellationDate] = useState(
     () =>
@@ -35,25 +45,19 @@ export const ViewListing = ({ onOpenBookings }) => {
         .toISOString()
         .split("T")[0],
   );
-  const [favorites, setFavorites] = useState(getStoredFavorites);
+  const [bookingError, setBookingError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [confirmedTotal, setConfirmedTotal] = useState(null);
 
   useEffect(() => {
-    const syncFavorites = () => setFavorites(getStoredFavorites());
-    window.addEventListener(favoritesChangedEvent, syncFavorites);
-    return () => {
-      window.removeEventListener(favoritesChangedEvent, syncFavorites);
-    };
-  }, []);
-
-  const toggleFavorite = (event, id) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const nextfavorites = favorites.includes(id)
-      ? favorites.filter((favoriteId) => favoriteId !== id)
-      : [...favorites, id];
-    saveFavorites(nextfavorites);
-    setFavorites(nextfavorites);
-  };
+    const daysBefore = Math.floor(Math.random() * 5 + 1);
+    const newCancellation = new Date(
+      new Date(checkInDate).getTime() - daysBefore * 86400000,
+    )
+      .toISOString()
+      .split("T")[0];
+    setCancellationDate(newCancellation);
+  }, [checkInDate]);
 
   const handleCheckInChange = (event) => {
     const nextCheckIn = event.target.value;
@@ -72,65 +76,56 @@ export const ViewListing = ({ onOpenBookings }) => {
     );
   };
 
-  const tripTotal = listing ? Number(listing.price) * Number(guestQty || 0) : 0;
+  const nights = nightsBetween(checkInDate, checkOutDate);
+  const estimatedTotal = listing
+    ? Number(listing.price) * nights * Number(guestQty || 0)
+    : 0;
+  const displayTotal =
+    confirmedTotal !== null ? confirmedTotal : estimatedTotal;
 
-  const getStoredBookings = () => {
-    try {
-      const storedBookings = JSON.parse(
-        window.localStorage.getItem("bookings"),
-      );
-      return Array.isArray(storedBookings) ? storedBookings : [];
-    } catch (error) {
-      return [];
-    }
-  };
-
-  const handleReserveBooking = (event) => {
+  const handleReserveBooking = async (event) => {
     event.preventDefault();
+    setBookingError(null);
 
     if (!listing) return;
 
-    const booking = {
-      id: nanoid(),
-      listingId: listing.id,
-      title: listing.title,
-      location: listing.location,
-      address: listing.address,
-      image: listing.image,
-      layoutImages: listing.layoutimgs,
-      rating: listing.rating,
-      price: listing.price,
-      guests: Number(guestQty),
-      checkIn: checkInDate,
-      checkOut: checkOutDate,
-      total: tripTotal,
-      about: listing.about,
-    };
+    if (!loggedIn) {
+      history.push("/login");
+      return;
+    }
 
+    setSubmitting(true);
     try {
-      window.localStorage.setItem(
-        "bookings",
-        JSON.stringify([...getStoredBookings(), booking]),
-      );
+      const { booking } = await api.post("/bookings", {
+        listingId: listing._id,
+        guests: Number(guestQty),
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+      });
 
+      setConfirmedTotal(booking.total);
       setTimeout(() => {
+        setConfirmedTotal(null);
         onOpenBookings();
-        alert("Reservation Successful");
       }, 2000);
-    } catch (error) {
-      onOpenBookings();
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 401) {
+        history.push("/login");
+      } else {
+        setBookingError(err.message);
+      }
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  useEffect(() => {
-    const daysBefore = Math.floor(Math.random() * 5 + 1);
-    const newCancellation = new Date(
-      new Date(checkInDate).getTime() - daysBefore * 86400000,
-    )
-      .toISOString()
-      .split("T")[0];
-    setCancellationDate(newCancellation);
-  }, [checkInDate]);
+  if (loading) {
+    return <p className="listing-notfound">Loading listing...</p>;
+  }
+
+  if (error) {
+    return <p className="listing-notfound">{error}</p>;
+  }
 
   if (!listing) {
     return (
@@ -158,12 +153,16 @@ export const ViewListing = ({ onOpenBookings }) => {
         <div className="book-listing">
           <div className="listing-preview">
             <div className="listing-image-wrapper">
-              <img src={listing.image} alt={listing.title} />
+              <img src={imageUrl(listing.image)} alt={listing.title} />
               <span
                 className="view-favorite"
-                onClick={(event) => toggleFavorite(event, listing.id)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  toggleFavorite(listing._id);
+                }}
               >
-                {favorites.includes(listing.id) ? (
+                {favorites.includes(listing._id) ? (
                   <FavoriteIcon />
                 ) : (
                   <FavoriteBorderIcon />
@@ -171,8 +170,8 @@ export const ViewListing = ({ onOpenBookings }) => {
               </span>
             </div>
             <div className="img-layout">
-              {listing.layoutimgs.map((image) => (
-                <img key={image.src} src={image.src} alt={listing.title} />
+              {(listing.layoutimgs || []).map((image) => (
+                <img key={image} src={imageUrl(image)} alt={listing.title} />
               ))}
             </div>
           </div>
@@ -472,9 +471,18 @@ export const ViewListing = ({ onOpenBookings }) => {
               </span>
               <div className="trip-total">
                 <span>Trip total:</span>
-                <span>R{tripTotal.toFixed(2)}</span>
+                <span>R{Number(displayTotal).toFixed(2)}</span>
               </div>
-              <button type="submit">Reserve Booking</button>
+              {bookingError && (
+                <span className="edit-error">{bookingError}</span>
+              )}
+              <button type="submit" disabled={submitting}>
+                {submitting
+                  ? "Reserving..."
+                  : loggedIn
+                    ? "Reserve Booking"
+                    : "Login to Reserve"}
+              </button>
             </form>
           </div>
         </div>

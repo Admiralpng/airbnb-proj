@@ -1,45 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Listings.css";
 import "../../Responsive Styles/ResponsiveListings.css";
 import { ListingInfo } from "./ListingInfo";
-import {
-  favoritesChangedEvent,
-  getStoredFavorites,
-  listings,
-  saveFavorites,
-} from "./listingsData";
+import { useListings } from "../../App Context/listingsContext";
+import { useFavorites } from "./StoredEvents/Favorites";
+import { imageUrl } from "../../API";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 export const Listings = ({ location }) => {
+  const { listings, loading, error } = useListings();
+  const { favorites, toggleFavorite } = useFavorites();
+
   const displayedListings = location
     ? listings
         .filter((listing) => listing.location === location)
         .sort((a, b) => a.location.localeCompare(b.location))
     : listings;
-  const [favorites, setFavorites] = useState(getStoredFavorites);
 
-  useEffect(() => {
-    const syncFavorites = () => setFavorites(getStoredFavorites());
-    window.addEventListener(favoritesChangedEvent, syncFavorites);
-
-    return () => {
-      window.removeEventListener(favoritesChangedEvent, syncFavorites);
-    };
-  }, []);
-
-  const toggleFavorite = (event, id) => {
+  const toggle = (event, id) => {
     event.preventDefault();
     event.stopPropagation();
-
-    const nextfavorites = favorites.includes(id)
-      ? favorites.filter((favoriteId) => favoriteId !== id)
-      : [...favorites, id];
-    saveFavorites(nextfavorites);
-    setFavorites(nextfavorites);
+    toggleFavorite(id);
   };
 
   const smoothScroll = (element, target, duration) => {
@@ -74,22 +59,30 @@ export const Listings = ({ location }) => {
     smoothScroll(container, targetScroll, 400);
   };
 
+  if (loading) {
+    return <p className="listings-loading">Loading listings...</p>;
+  }
+
+  if (error) {
+    return <p className="listings-loading">{error}</p>;
+  }
+
   return (
     <div className="listing-array" id="listings">
       <div className="listing-box-container">
         {displayedListings.map((listing) => (
           <Link
-            to={`/viewlisting/${listing.id}`}
+            to={`/viewlisting/${listing._id}`}
             className="listing-box"
-            key={listing.id}
+            key={listing._id}
           >
             <div>
               <span>Trending</span>
               <span
                 className="heart"
-                onClick={(event) => toggleFavorite(event, listing.id)}
+                onClick={(event) => toggle(event, listing._id)}
               >
-                {favorites.includes(listing.id) ? (
+                {favorites.includes(listing._id) ? (
                   <FavoriteIcon />
                 ) : (
                   <FavoriteBorderIcon />
@@ -97,10 +90,10 @@ export const Listings = ({ location }) => {
               </span>
             </div>
             <ListingInfo
-              id={listing.id}
+              id={listing._id}
               location={listing.location}
               title={listing.title}
-              image={listing.image}
+              image={imageUrl(listing.image)}
               rating={listing.rating}
               price={listing.price}
             />

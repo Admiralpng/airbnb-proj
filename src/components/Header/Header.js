@@ -8,7 +8,8 @@ import PublicIcon from "@mui/icons-material/Public";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-export const Header = ({ onOpenBookings, onLogOut }) => {
+export const Header = ({ onOpenBookings }) => {
+  const { loggedIn, logout } = useContext(AuthContext);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const history = useHistory();
@@ -53,11 +54,8 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
   }, [showSearchModal]);
 
   return (
-    <AuthContext.Consumer>
-      {(ctx) => {
-        return (
-          <div className="navbar">
-            <nav>
+    <div className="navbar">
+      <nav>
               <Link to="/">
                 <svg
                   viewBox="0 0 3490 1080"
@@ -100,7 +98,7 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
                 }
               </div>
               <div className="user-config">
-                {ctx.loggedIn ? (
+                {loggedIn ? (
                   <Link to="/hosting" className="hosting-btn">
                     <h2>Switch to Hosting</h2>
                   </Link>
@@ -138,8 +136,14 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
                           <strong>Saved</strong>
                         </span>
                       </span>
-                      {ctx.loggedIn ? (
-                        <Link to="/home" onClick={onLogOut}>
+                      {loggedIn ? (
+                        <Link
+                          to="/home"
+                          onClick={() => {
+                            logout();
+                            setShowMoreMenu(false);
+                          }}
+                        >
                           <span>
                             <strong> Log Out</strong>
                           </span>
@@ -157,8 +161,5 @@ export const Header = ({ onOpenBookings, onLogOut }) => {
               </div>
             </nav>
           </div>
-        );
-      }}
-    </AuthContext.Consumer>
   );
 };

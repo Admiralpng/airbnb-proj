@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { listings } from "../Listings/listingsData";
-import {
-  favoritesChangedEvent,
-  getStoredFavorites,
-  saveFavorites,
-} from "../Listings/listingsData";
+import { useListings } from "../../App Context/listingsContext";
+import { useFavorites } from "../Listings/StoredEvents/Favorites";
+import { imageUrl } from "../../API";
 import { ListingInfo } from "../Listings/ListingInfo";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -15,77 +12,69 @@ import "./Locations.css";
 
 export const Locations = () => {
   const { location } = useParams();
+  const { listings, loading, error } = useListings();
+  const { favorites, toggleFavorite } = useFavorites();
   const [displayedListings, setDisplayedListings] = useState([]);
-  const [favorites, setFavorites] = useState(getStoredFavorites);
 
   useEffect(() => {
     if (location) {
-      const filtered = listings.filter((listing) =>
-        listing.location.includes(location)
+      setDisplayedListings(
+        listings.filter((listing) => listing.location.includes(location)),
       );
-      setDisplayedListings(filtered);
+    } else {
+      setDisplayedListings([]);
     }
-  }, [location]);
+  }, [location, listings]);
 
-  useEffect(() => {
-    const syncFavorites = () => setFavorites(getStoredFavorites());
-    window.addEventListener(favoritesChangedEvent, syncFavorites);
-    return () => {
-      window.removeEventListener(favoritesChangedEvent, syncFavorites);
-    };
-  }, []);
-
-  const toggleFavorite = (event, id) => {
+  const toggle = (event, id) => {
     event.preventDefault();
     event.stopPropagation();
-    const nextfavorites = favorites.includes(id)
-      ? favorites.filter((favoriteId) => favoriteId !== id)
-      : [...favorites, id];
-    saveFavorites(nextfavorites);
-    setFavorites(nextfavorites);
+    toggleFavorite(id);
   };
 
-  const formatLocation = (loc) => {
-    return loc.replace(", South Africa", "");
-  };
+  const formatLocation = (loc) => loc.replace(", South Africa", "");
 
   return (
     <div className="locations-page">
       <div className="locations-header">
-        <h1>{formatLocation(location)}</h1>
+        <h1>{formatLocation(location || "")}</h1>
         <p>{displayedListings.length} Listings Available</p>
       </div>
       <div className="listing-array">
         <div className="listing-box-container">
-          {displayedListings.map((listing) => (
-            <Link
-              to={`/viewlisting/${listing.id}`}
-              className="listing-box"
-              key={listing.id}
-            >
-              <div>
-                <span>Trending</span>
-                <span
-                  className="heart"
-                  onClick={(event) => toggleFavorite(event, listing.id)}
-                >
-                  {favorites.includes(listing.id) ? (
-                    <FavoriteIcon />
-                  ) : (
-                    <FavoriteBorderIcon />
-                  )}
-                </span>
-              </div>
-              <ListingInfo
-                id={listing.id}
-                location={listing.location}
-                title={listing.title}
-                image={listing.image}
-                rating={listing.rating}
-                price={listing.price}
-              />
-            </Link>
-          ))}
+          {loading && <p className="listings-loading">Loading listings...</p>}
+          {!loading && error && <p className="listings-loading">{error}</p>}
+          {!loading &&
+            !error &&
+            displayedListings.map((listing) => (
+              <Link
+                to={`/viewlisting/${listing._id}`}
+                className="listing-box"
+                key={listing._id}
+              >
+                <div>
+                  <span>Trending</span>
+                  <span
+                    className="heart"
+                    onClick={(event) => toggle(event, listing._id)}
+                  >
+                    {favorites.includes(listing._id) ? (
+                      <FavoriteIcon />
+                    ) : (
+                      <FavoriteBorderIcon />
+                    )}
+                  </span>
+                </div>
+                <ListingInfo
+                  id={listing._id}
+                  location={listing.location}
+                  title={listing.title}
+                  image={imageUrl(listing.image)}
+                  rating={listing.rating}
+                  price={listing.price}
+                />
+              </Link>
+            ))}
         </div>
       </div>
     </div>

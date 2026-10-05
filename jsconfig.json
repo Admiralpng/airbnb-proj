@@ -11,9 +11,7 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": [
-        "src",
-        "backend/server.js",
-        "backend/workout.js"
+        "src"
     ],
     "exclude": [
         "node_modules"

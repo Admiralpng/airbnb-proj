@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import "./Home.css";
 import "../../Responsive Styles/ResponsiveHome.css";
 import { Listings } from "../Listings/Listings";
