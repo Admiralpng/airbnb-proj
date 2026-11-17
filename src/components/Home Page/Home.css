@@ -195,6 +195,10 @@
     margin: 0 auto;
 }
 
+.home-block:hover {
+    opacity: 0.9;
+}
+
 .home-heading {
     color: #000;
     font-size: 36px;
@@ -284,6 +288,8 @@ button.city-card:hover {
     line-height: 24px;
 }
 
+
+
 .experience-card {
     align-items: flex-end;
     height: 400px;
@@ -296,10 +302,6 @@ button.city-card:hover {
     line-height: 32px;
     text-align: left;
     transition: opacity 200ms ease;
-}
-
-.experience-card:hover {
-    opacity: 0.9;
 }
 
 .experience-warm {

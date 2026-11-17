@@ -114,8 +114,8 @@ export const Home = () => {
       </section>
 
       <section className="home-section">
-        <div className="home-block">
-          <h2 className="home-heading">Inspiration for your next trip</h2>
+        <div style={{ maxWidth: "1120px", width: "100%", margin: "0 auto" }}>
+          <h2 className="home-heading" style={{marginBottom: "48px"}}>Inspiration for your next trip</h2>
           <div className="city-row">
             {CITIES.map((city) => (
               <CityCard key={city.title} {...city} />
@@ -123,13 +123,13 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="home-block">
-          <h2 className="home-heading">Discover Airbnb Experiences</h2>
+        <div style={{ maxWidth: "1120px", width: "100%", margin: "0 auto" }}>
+          <h2 className="home-heading" style={{marginBottom: "48px"}}>Discover Airbnb Experiences</h2>
           <div className="experience-row">
-            <div className="experience-card experience-warm">
+            <div className="home-block experience-card experience-warm">
               <span>Cook with a local chef</span>
             </div>
-            <div className="experience-card experience-cool">
+            <div className="home-block experience-card experience-cool">
               <span>Things to do on your getaway</span>
             </div>
           </div>
