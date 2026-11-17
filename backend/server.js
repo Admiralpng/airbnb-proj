@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
+    origin: process.env.CLIENT_ORIGIN || "https://airbnb-proj-phi.vercel.app",
   }),
 );
 app.use(express.json());

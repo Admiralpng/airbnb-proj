@@ -5,22 +5,22 @@ import "./Home.css";
 import "../../Responsive Styles/ResponsiveHome.css";
 
 const CITIES = [
-  { title: "Cape Town", distance: "Table Mountain views", to: "/locations/Cape Town", media: "ct" },
-  { title: "Johannesburg", distance: "City lights and stays", to: "/locations/Johannesburg", media: "jhb" },
-  { title: "Durban", distance: "Golden mile sunsets", media: "dhb" },
-  { title: "Stellenbosch", distance: "Winelands escapes", media: "stelles" },
+  { title: "Cape Town", location: "Table Mountain views", to: "/locations/Cape Town", media: "ct" },
+  { title: "Johannesburg", location: "City lights and stays", to: "/locations/Johannesburg", media: "jhb" },
+  { title: "Durban", location: "Golden mile sunsets", media: "dhb" },
+  { title: "Stellenbosch", location: "Winelands escapes", media: "stelles" },
 ];
 
 const SEARCH_LOCATIONS = ["Cape Town", "Johannesburg"];
 
-const CityCard = ({ title, distance, to, media }) => {
+const CityCard = ({ title, location, to, media }) => {
   const history = useHistory();
   const body = (
     <>
       <span className={`city-card-media ${media}`} />
       <span className="city-card-body">
         <span className="city-card-title">{title}</span>
-        <span className="city-card-distance">{distance}</span>
+        <span className="city-card-location">{location}</span>
       </span>
     </>
   );
