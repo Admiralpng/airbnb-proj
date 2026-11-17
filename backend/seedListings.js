@@ -36,7 +36,7 @@ const listings = [
     location: capeTown,
     title: "Camps Bay Village",
     address: "32 Camps Bay Dr",
-    image: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SezTw4FXk04-gPjXFBiUU-MQZjFBZht2Shr9_huNccNWkRZAHkqS2jP40gVQmEXhCHHi8De5H6LCeiblSrcrVwzkEZ71DijIxo91CnwqiDTV9i4WadccOLlca4RDqMNI2Yb36ZXg=w253-h168-k-no",
+    image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/772286700.jpg?k=82ab7a79bea9d22fcc7b045f44c56c10b8cdb6d5f7d58dfe59282e44e4ab9ea7&o=",
     layoutimgs,
     rating: 4,
     price: 1200,

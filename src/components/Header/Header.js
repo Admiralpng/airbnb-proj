@@ -1,34 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import "../../Responsive Styles/ResponsiveHeader.css";
 import AuthContext from "../../App Context/authContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-export const Header = ({ onOpenBookings }) => {
+export const Header = ({ onOpenBookings, onSelectLocation }) => {
   const { loggedIn, logout } = useContext(AuthContext);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
-  const [showSearchModal, setShowSearchModal] = useState(false);
-  const history = useHistory();
 
   const moreHandler = (event) => {
     event.stopPropagation();
     setShowMoreMenu((prev) => !prev);
-  };
-
-  const searchHandler = (event) => {
-    event.stopPropagation();
-    setShowSearchModal(true);
-  };
-
-  const closeSearchModal = () => setShowSearchModal(false);
-
-  const selectLocation = (location) => {
-    history.push(`/locations/${location}`);
-    closeSearchModal();
   };
 
   useEffect(() => {
@@ -39,19 +26,6 @@ export const Header = ({ onOpenBookings }) => {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMoreMenu]);
-
-  useEffect(() => {
-    if (!showSearchModal) return;
-
-    const closeModal = (event) => {
-      if (!event.target.closest(".searchbar-wrapper")) {
-        setShowSearchModal(false);
-      }
-    };
-    document.addEventListener("click", closeModal);
-
-    return () => document.removeEventListener("click", closeModal);
-  }, [showSearchModal]);
 
   return (
     <div className="navbar">
@@ -72,47 +46,35 @@ export const Header = ({ onOpenBookings }) => {
                   ></path>
                 </svg>
               </Link>
-              <div className={`searchbar-wrapper ${showSearchModal ? "open" : ""}`}>
-                <input
-                  className="searchbar"
-                  type="text"
-                  placeholder="Search your vacay destination"
-                  onClick={() => setShowSearchModal((prev) => !prev)}
-                  readOnly
-                />
-                {showSearchModal && (
-                  <div className="location-dropdown">
-                    <div
-                      className="location-option"
-                      onClick={() => selectLocation("Cape Town")}
-                    >
-                      Cape Town
-                    </div>
-                    <div
-                      className="location-option"
-                      onClick={() => selectLocation("Johannesburg")}
-                    >
-                      Johannesburg
-                    </div>
-                  </div>)
-                }
+              <div className="nav-pages">
+                <h1 className="nav-page">Places to stay</h1>|
+                <h1 className="nav-page">Experiences</h1>|
+                <h1 className="nav-page">Bookings</h1>
               </div>
               <div className="user-config">
                 {loggedIn ? (
                   <Link to="/hosting" className="hosting-btn">
-                    <h2>Switch to Hosting</h2>
+                    <h2><strong>Switch to Hosting</strong></h2>
                   </Link>
                 ) : (
                   <Link to="/login" className="hosting-btn">
-                    <h2>Become a Host</h2>
+                    <h2><strong>Become a Host</strong></h2>
                   </Link>
                 )}
                 <div>
-                  <button>
+                  <button className="globe-btn">
                     <PublicIcon />
                   </button>
-                  <button onClick={moreHandler}>
+                  <button
+                    className={`profile-toggle ${showMoreMenu ? "is-open" : ""}`}
+                    aria-label="Open profile menu"
+                    aria-expanded={showMoreMenu}
+                    onClick={moreHandler}
+                  >
                     <MenuIcon />
+                    <span className="profile-avatar">
+                      <AccountCircleOutlinedIcon />
+                    </span>
                   </button>
                   {showMoreMenu && (
                     <div
@@ -121,9 +83,20 @@ export const Header = ({ onOpenBookings }) => {
                     >
                       <a href="https://www.airbnb.co.za/help" target="_blank">
                         <span>
-                          <HelpOutlineOutlinedIcon /> Help Center
+                          <HelpOutlineOutlinedIcon /> <strong>Help Center</strong>
                         </span>
                       </a>
+                      <span
+                        className="more-menu-button"
+                        onClick={() => {
+                          setShowMoreMenu(false);
+                          if (onSelectLocation) onSelectLocation();
+                        }}
+                      >
+                        <span>
+                          <PublicIcon /> <strong>Locations</strong>
+                        </span>
+                      </span>
                       <span
                         className="more-menu-button"
                         onClick={() => {
@@ -133,7 +106,7 @@ export const Header = ({ onOpenBookings }) => {
                       >
                         <span>
                           <FavoriteBorderIcon />
-                          <strong>Saved</strong>
+                          <strong>Bookings</strong>
                         </span>
                       </span>
                       {loggedIn ? (
@@ -151,6 +124,7 @@ export const Header = ({ onOpenBookings }) => {
                       ) : (
                         <Link to="/login">
                           <span>
+                            <AccountCircleOutlinedIcon />
                             <strong> Login or Signup</strong>
                           </span>
                         </Link>

@@ -1,28 +1,111 @@
-@media (max-width: 667px) {
-    .home-page section h1 {
-        margin-left: 14px;
-    }
+@media (max-width: 1024px) {
+	.city-row {
+	grid-template-columns: repeat(2, 1fr);
+	}
 
-    .home-page section {
-        padding-left: 0px;
-    }
+	.experience-card {
+	height: 320px;
+	padding: 28px;
+	font-size: 20px;
+	line-height: 28px;
+	}
 
-    .home-page section> :nth-child(2) {
-        padding: 12px 0px;
-        margin-left: 0px;
-        display: flex;
-        flex-direction: column;
-    }
+	.gift-row {
+	flex-direction: column;
+	align-items: stretch;
+	}
+
+	.gift-copy {
+	width: 100%;
+	}
+
+	.gift-title {
+	font-size: 36px;
+	line-height: 44px;
+	}
+
+	.hosting-title {
+	font-size: 48px;
+	line-height: 52px;
+	}
 }
 
-@media (min-width: 668px) and (max-width: 1024px) {
+@media (max-width: 667px) {
+	.hero {
+	gap: 32px;
+	padding: 16px 16px 48px;
+	}
 
-    .home-page section {
-        margin-left: 10px;
-    }
+	.hero-search {
+	flex-wrap: wrap;
+	gap: 12px;
+	height: auto;
+	padding: 16px;
+	border-radius: 12px;
+	}
 
-    .home-page section> :nth-child(2) {
-        margin-left: 24px;
-        padding: 0;
-    }
+	.hero-search-field {
+	flex: 1 0 40%;
+	padding: 0;
+	}
+
+	.hero-search-divider {
+	display: none;
+	}
+
+	.hero-search-submit {
+	margin-left: 0;
+	}
+
+	.hero-card {
+	min-height: 320px;
+	padding: 40px 24px;
+	}
+
+	.hero-card h1 {
+	font-size: 32px;
+	line-height: 40px;
+	}
+
+	.home-section {
+	gap: 48px;
+	padding: 48px 16px;
+	}
+
+	.home-block {
+	gap: 32px;
+	}
+
+	.home-heading {
+	font-size: 26px;
+	line-height: 32px;
+	}
+
+	.city-row,
+	.experience-row,
+	.inspiration-grid {
+	grid-template-columns: 1fr;
+	}
+
+	.experience-card {
+	height: 220px;
+	}
+
+	.gift-media {
+	height: 200px;
+	}
+
+	.hosting-card {
+	min-height: 360px;
+	padding: 32px 24px;
+	}
+
+	.hosting-title {
+	font-size: 40px;
+	line-height: 44px;
+	}
+
+	.inspiration-tabs {
+	gap: 16px;
+	}
 }

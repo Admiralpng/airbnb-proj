@@ -4,7 +4,6 @@ import "./App.css";
 import "./Responsive Styles/ResponsiveMobile.css";
 import "./Responsive Styles/ResponsiveTablet.css";
 import { Home } from "./components/Home Page/Home";
-import { LeftPanel } from "./components/Left Panel/LeftPanel";
 import { ViewListing } from "./components/Listings/ViewListing";
 import { Header } from "./components/Header/Header";
 import { NotFound } from "./components/Not Found Page/NotFound";
@@ -37,15 +36,12 @@ function App() {
     <AuthProvider>
       <ListingsProvider>
         {!isHosting && (
-          <Header onOpenBookings={openBookings} />
+          <Header
+            onOpenBookings={openBookings}
+            onSelectLocation={openLocations}
+          />
         )}
         <main>
-          {!isHosting && (
-            <LeftPanel
-              onOpenBookings={openBookings}
-              onSelectLocation={openLocations}
-            />
-          )}
           <Switch>
             <Route path="/" exact>
               <Redirect to="/home" />

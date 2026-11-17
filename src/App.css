@@ -1,125 +1,101 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-}
-
-/* General */
-
-main> :nth-child(2) {
-    padding-right: 24px;
+main > :nth-child(2) {
+	padding-right: 24px;
 }
 
 h1 {
-    color: #131212;
-    font-size: 20px;
+	color: #131212;
+	font-size: 20px;
 }
 
 h2 {
-    font-weight: 700;
-    font-size: 16px;
+	font-size: 16px;
+	font-weight: 700;
 }
 
 svg {
-    padding: 2px;
+	padding: 2px;
 }
 
 svg:hover {
-    padding: 0.5px;
-    transition: ease 200ms;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    width: fit-content;
+	padding: 0.5px;
+	transition: ease 200ms;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 button:hover {
-    transition: ease 200ms;
+	transition: ease 200ms;
 }
 
-/* footer */
-
 .footer {
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #f7f7f7;
-    padding: 24px 48px;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 24px 48px;
+	background: #f7f7f7;
 }
 
 .footer ul {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 48px;
-    column-gap: 24px;
-    padding: 0px 50px 0px 156px;
+	display: flex;
+	column-gap: 24px;
+	margin-bottom: 48px;
+	padding: 0 50px 0 156px;
 }
 
 .faq-column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 24px 0px;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 24px 0;
 }
 
 .faq-column span {
-    font-weight: 600;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
+	font-weight: 600;
 }
 
-.faq-column>* {
-    font-size: 14px;
-    margin: 10px 0px;
+.faq-column > * {
+	margin: 10px 0;
+	font-size: 14px;
 }
 
 .footer section {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    border-top: 1px solid gainsboro;
-    padding-top: 25px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding-top: 25px;
+	border-top: 1px solid gainsboro;
 }
 
 .socials-btns {
-    display: flex;
-    float: right;
-    flex-direction: row;
-    align-items: center;
-    justify-content: right;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.socials-btns button,
+.socials-btns button > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: 9999px;
 }
 
 .socials-btns button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 5px;
-    border-radius: 9999px;
-    width: 34px;
-    padding: 0px;
-    height: 34px;
-    border: 0px;
+	width: 34px;
+	height: 34px;
+	margin-right: 5px;
+	padding: 0;
 }
 
 .socials-btns button:hover {
-    background-color: gainsboro;
+	background: gainsboro;
 }
 
-.socials-btns button>a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
+.socials-btns button > a {
+	width: 26px;
+	height: 26px;
 }
