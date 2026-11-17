@@ -41,16 +41,39 @@ app.use((error, req, res, next) => {
     .json({ error: error.message || "Something went wrong" });
 });
 
-const PORT = process.env.PORT || 3000;
+let connected;
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`API listening on http://localhost:${PORT}`);
+const connectDb = async () => {
+  if (connected) return connected;
+  if (!process.env.MONGODB_URI) {
+    throw new Error("MONGODB_URI is not set");
+  }
+  connected = mongoose.connect(process.env.MONGODB_URI);
+  await connected;
+  return connected;
+};
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDb();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  connectDb()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`API listening on http://localhost:${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error("MongoDB connection failed:", error.message);
+      process.exit(1);
     });
-  })
-  .catch((error) => {
-    console.error("MongoDB connection failed:", error.message);
-    process.exit(1);
-  });
+}
+
+module.exports = app;
