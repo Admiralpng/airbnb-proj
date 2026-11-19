@@ -1,6 +1,6 @@
 export const TOKEN_KEY = "airbnbToken";
 
-const RAW_API_URL = process.env.REACT_APP_API_URL || "";
+const RAW_API_URL = process.env.REACT_APP_API_URL || "https://airbnb-proj-black.vercel.app/";
 
 export const API_BASE = RAW_API_URL.replace(/\/+$/, "");
 
