@@ -1,6 +1,6 @@
 export const TOKEN_KEY = "airbnbToken";
 
-const RAW_API_URL = process.env.REACT_APP_API_URL || "https://airbnb-proj-black.vercel.app/";
+const RAW_API_URL = process.env.REACT_APP_API_URL || "";
 
 export const API_BASE = RAW_API_URL.replace(/\/+$/, "");
 
@@ -41,9 +41,10 @@ const request = async (path, { method = "GET", body, isForm = false } = {}) => {
     headers["Content-Type"] = "application/json";
   }
 
+  const url = API_BASE ? `${API_BASE}/api${path}` : `/api${path}`;
   let response;
   try {
-    response = await fetch(`${API_BASE}/api${path}`, {
+    response = await fetch(url, {
       method,
       headers,
       body: isForm ? body : body !== undefined ? JSON.stringify(body) : undefined,
@@ -96,5 +97,5 @@ export const imageUrl = (value) => {
   if (/^(https?:)?\/\//.test(value) || value.startsWith("data:")) {
     return value;
   }
-  return `${API_BASE}/uploads/${value}`;
+  return `${API_BASE || ""}/uploads/${value}`;
 };

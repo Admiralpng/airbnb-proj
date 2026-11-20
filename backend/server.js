@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || "https://airbnb-proj-black.vercel.app/",
+    origin: process.env.CLIENT_ORIGIN || true,
   }),
 );
 app.use(express.json());
