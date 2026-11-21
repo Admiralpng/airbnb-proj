@@ -18,6 +18,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const [bookingsModalOpen, setBookingsModalOpen] = useState(false);
@@ -211,6 +212,7 @@ function App() {
         {locationsModalOpen && (
           <LocationsModal onClose={closeLocations} />
         )}
+        <SpeedInsights />
       </ListingsProvider>
     </AuthProvider>
   );
