@@ -42,7 +42,8 @@
 .locations-page .heart {
 	position: absolute;
 	top: 8px;
-	right: 5px;
+	right: 10px;
+	left: auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
