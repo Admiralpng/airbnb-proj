@@ -1,10 +1,9 @@
 .listing {
 	display: flex;
-	justify-content: space-between;
 	align-content: center;
 	width: 100%;
 	height: fit-content;
-	gap: 36px;
+	gap: 18px;
 }
 
 .listing>img {
