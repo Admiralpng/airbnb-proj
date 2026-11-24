@@ -24,23 +24,6 @@ app.use(
   express.static(path.join(__dirname, "uploads"), { fallthrough: true }),
 );
 
-app.use("/api/auth", authRoutes);
-app.use("/api/listings", listingRoutes);
-app.use("/api/bookings", bookingRoutes);
-
-app.get("/api/health", (req, res) => res.json({ ok: true }));
-
-app.use((req, res) => res.status(404).json({ error: "Route not found" }));
-
-app.use((error, req, res, next) => {
-  if (res.headersSent) return next(error);
-  const status = error.status || (error.name === "MulterError" ? 400 : 500);
-  if (status >= 500) console.error(error);
-  return res
-    .status(status)
-    .json({ error: error.message || "Something went wrong" });
-});
-
 let connected;
 
 const connectDb = async () => {
@@ -57,6 +40,23 @@ app.use(async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+app.use("/api/auth", authRoutes);
+app.use("/api/listings", listingRoutes);
+app.use("/api/bookings", bookingRoutes);
+
+app.get("/api/health", (req, res) => res.json({ ok: true }));
+
+app.use((req, res) => res.status(404).json({ error: "Route not found" }));
+
+app.use((error, req, res, next) => {
+  if (res.headersSent) return next(error);
+  const status = error.status || (error.name === "MulterError" ? 400 : 500);
+  if (status >= 500) console.error(error);
+  return res
+    .status(status)
+    .json({ error: error.message || "Something went wrong" });
 });
 
 if (require.main === module) {
