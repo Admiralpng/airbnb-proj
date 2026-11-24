@@ -1,13 +1,15 @@
 .listing {
+	display: flex;
+	justify-content: center;
+	align-content: center;
 	width: 100%;
-	min-width: 0;
 	height: fit-content;
 }
 
-.listing > img {
+.listing>img {
 	display: block;
 	width: 100%;
-	aspect-ratio: 20 / 19;
+	aspect-ratio: 7 / 5;
 	object-fit: cover;
 	border-radius: 8px;
 	image-rendering: optimizeQuality;
@@ -18,7 +20,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 4px;
-	padding: 12px 0 0;
+	padding: 12px 0;
 	text-align: left;
 }
 
@@ -44,6 +46,12 @@
 
 .location img {
 	display: none;
+}
+
+.listing-info>div {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
 }
 
 .product-price {
@@ -78,13 +86,13 @@
 	color: #000;
 }
 
-.rating span > svg {
+.rating span>svg {
 	display: none;
 }
 
 @media (max-width: 667px) {
 	.listing-title {
-	font-size: 14px;
-	line-height: 20px;
+		font-size: 14px;
+		line-height: 20px;
 	}
 }

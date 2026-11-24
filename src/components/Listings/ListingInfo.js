@@ -22,23 +22,25 @@ export const ListingInfo = ({
         <h2 className="listing-title">{title}</h2>
         <h3 className="listing-address">{address}</h3>
         <span className="location">
-          <img src="/location-pin-svg.svg" alt="event location pin" />:{" "}
-          {location}
+          <img src="/location-pin-svg.svg" alt="event location pin" />Address:{" "}
+          {address}
         </span>
-        <p className="product-price">
-          From <small>R</small>
-          {price}/guest
-        </p>
-        <div className="rating">
-          <span>
-            Reviews:{" "}
-            {Array(rating)
-              .fill()
-              .map((_, i) => (
-                <GradeTwoToneIcon key={i} />
-              ))}
-          </span>
-          <p className="about-listing">{about}</p>
+        <div>
+          <p className="product-price">
+            From <small>R</small>
+            {price}/guest
+          </p>
+          <div className="rating">
+            <span>
+              Reviews:{" "}
+              {Array(rating)
+                .fill()
+                .map((_, i) => (
+                  <GradeTwoToneIcon key={i} />
+                ))}
+            </span>
+            <p className="about-listing">{about}</p>
+          </div>
         </div>
       </div>
     </div>

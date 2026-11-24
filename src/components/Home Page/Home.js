@@ -97,16 +97,15 @@ const SearchPill = ({ onSubmit }) => {
 
 export const Home = () => {
   const history = useHistory();
-  const goToLocations = () => history.push("/locations");
 
   return (
     <div className="home-page">
       <section className="hero">
-        <SearchPill onSubmit={goToLocations} />
+        <SearchPill/>
         <div className="hero-card">
           <div style={{ borderRadius: "10px", padding: "0 10px", backdropFilter: "blur(2px)" }}>
             <h1>Not sure where to go? Perfect.</h1>
-            <button type="button" className="btn btn-light" onClick={goToLocations}>
+            <button type="button" className="btn btn-light">
               I'm flexible
             </button>
           </div>
