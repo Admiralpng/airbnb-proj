@@ -22,8 +22,7 @@ export const ListingInfo = ({
         <h2 className="listing-title">{title}</h2>
         <h3 className="listing-address">{address}</h3>
         <span className="location">
-          <img src="/location-pin-svg.svg" alt="event location pin" />Address:{" "}
-          {address}
+          <img src="/location-pin-svg.svg" alt="event location pin" />Address: {address}
         </span>
         <div>
           <p className="product-price">
