@@ -1,18 +1,21 @@
 require("dotenv").config();
 
-const mongoose = require("mongoose");
-const Listing = require("./models/Listing");
+const { connect, disconnect } = require("./db/mongo");
 const seedListings = require("./seedListings");
 
 const force = process.argv.includes("--force");
 
 async function seed() {
+  const db = await connect();
+
   if (force) {
-    const { deletedCount } = await Listing.deleteMany({ owner: null });
+    const { deletedCount } = await db
+      .collection("listings")
+      .deleteMany({ owner: null });
     console.log(`Removed ${deletedCount} previously seeded listings`);
   }
 
-  const count = await Listing.countDocuments({ owner: null });
+  const count = await db.collection("listings").countDocuments({ owner: null });
 
   if (count > 0) {
     console.log(
@@ -21,22 +24,27 @@ async function seed() {
     return { inserted: 0, skipped: true };
   }
 
-  await Listing.insertMany(
-    seedListings.map((listing) => ({ ...listing, owner: null })),
+  const now = new Date();
+  await db.collection("listings").insertMany(
+    seedListings.map((listing) => ({
+      ...listing,
+      owner: null,
+      createdAt: now,
+      updatedAt: now,
+    })),
   );
   console.log(`Seeded ${seedListings.length} listings`);
   return { inserted: seedListings.length, skipped: false };
 }
 
-async function connect() {
-  await mongoose.connect(process.env.MONGODB_URI);
+async function connectAndSeed() {
   console.log("Connected to MongoDB");
   await seed();
-  await mongoose.disconnect();
+  await disconnect();
 }
 
 if (require.main === module) {
-  connect().catch((error) => {
+  connectAndSeed().catch((error) => {
     console.error("Seed failed:", error.message);
     process.exit(1);
   });

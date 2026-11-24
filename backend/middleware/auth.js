@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/mongo");
 
 const requireAuth = async (req, res, next) => {
   try {
@@ -17,7 +18,10 @@ const requireAuth = async (req, res, next) => {
       return res.status(401).json({ error: "Invalid or expired token" });
     }
 
-    const user = await User.findById(payload.sub);
+    const db = getDb();
+    const user = await db.collection("users").findOne({
+      _id: new ObjectId(payload.sub),
+    });
     if (!user) {
       return res.status(401).json({ error: "User no longer exists" });
     }

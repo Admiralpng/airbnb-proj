@@ -1,6 +1,6 @@
 const express = require("express");
-const Booking = require("../models/Booking");
-const Listing = require("../models/Listing");
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/mongo");
 const { requireAuth } = require("../middleware/auth");
 
 const router = express.Router();
@@ -30,9 +30,12 @@ const parseDateOnly = (value) => {
 
 router.get("/", requireAuth, async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ user: req.user._id }).sort({
-      createdAt: -1,
-    });
+    const db = getDb();
+    const bookings = await db
+      .collection("bookings")
+      .find({ user: new ObjectId(req.user._id) })
+      .sort({ createdAt: -1 })
+      .toArray();
     return res.json({ bookings });
   } catch (error) {
     return next(error);
@@ -68,13 +71,16 @@ router.post("/", requireAuth, async (req, res, next) => {
       return res.status(404).json({ error: "Listing not found" });
     }
 
-    const listing = await Listing.findById(listingId);
+    const db = getDb();
+    const listing = await db
+      .collection("listings")
+      .findOne({ _id: new ObjectId(listingId) });
     if (!listing) {
       return res.status(404).json({ error: "Listing not found" });
     }
 
-    const clash = await Booking.findOne({
-      listing: listing._id,
+    const clash = await db.collection("bookings").findOne({
+      listing: new ObjectId(listing._id),
       checkIn: { $lt: checkOut },
       checkOut: { $gt: checkIn },
     });
@@ -85,9 +91,10 @@ router.post("/", requireAuth, async (req, res, next) => {
     const nights = Math.round((checkOut - checkIn) / MS_PER_DAY);
     const total = Number(listing.price) * nights * guests;
 
-    const booking = await Booking.create({
-      user: req.user._id,
-      listing: listing._id,
+    const now = new Date();
+    const result = await db.collection("bookings").insertOne({
+      user: new ObjectId(req.user._id),
+      listing: new ObjectId(listing._id),
       title: listing.title,
       location: listing.location,
       image: listing.image,
@@ -97,7 +104,28 @@ router.post("/", requireAuth, async (req, res, next) => {
       checkOut,
       nights,
       total,
+      status: "confirmed",
+      createdAt: now,
+      updatedAt: now,
     });
+
+    const booking = {
+      _id: result.insertedId,
+      user: new ObjectId(req.user._id),
+      listing: new ObjectId(listing._id),
+      title: listing.title,
+      location: listing.location,
+      image: listing.image,
+      price: listing.price,
+      guests,
+      checkIn,
+      checkOut,
+      nights,
+      total,
+      status: "confirmed",
+      createdAt: now,
+      updatedAt: now,
+    };
 
     return res.status(201).json({ booking });
   } catch (error) {
@@ -111,9 +139,10 @@ router.delete("/:id", requireAuth, async (req, res, next) => {
       return res.status(404).json({ error: "Booking not found" });
     }
 
-    const result = await Booking.deleteOne({
-      _id: req.params.id,
-      user: req.user._id,
+    const db = getDb();
+    const result = await db.collection("bookings").deleteOne({
+      _id: new ObjectId(req.params.id),
+      user: new ObjectId(req.user._id),
     });
 
     if (result.deletedCount === 0) {

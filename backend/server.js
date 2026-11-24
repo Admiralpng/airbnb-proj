@@ -3,11 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const mongoose = require("mongoose");
 
 const authRoutes = require("./routes/auth");
 const listingRoutes = require("./routes/listings");
 const bookingRoutes = require("./routes/bookings");
+const { connect } = require("./db/mongo");
 
 const app = express();
 
@@ -45,10 +45,7 @@ let connected;
 
 const connectDb = async () => {
   if (connected) return connected;
-  if (!process.env.MONGODB_URI) {
-    throw new Error("MONGODB_URI is not set");
-  }
-  connected = mongoose.connect(process.env.MONGODB_URI);
+  connected = connect();
   await connected;
   return connected;
 };

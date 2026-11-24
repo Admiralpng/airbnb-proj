@@ -1,7 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/mongo");
 const { requireAuth } = require("../middleware/auth");
 
 const router = express.Router();
@@ -29,13 +30,22 @@ router.post("/register", async (req, res, next) => {
         .json({ error: "Password must be at least 6 characters" });
     }
 
-    const existing = await User.findOne({ email });
+    const db = getDb();
+    const existing = await db.collection("users").findOne({ email });
     if (existing) {
       return res.status(409).json({ error: "Email already registered" });
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
-    const user = await User.create({ email, passwordHash });
+    const now = new Date();
+    const result = await db.collection("users").insertOne({
+      email,
+      passwordHash,
+      createdAt: now,
+      updatedAt: now,
+    });
+
+    const user = { _id: result.insertedId, email };
 
     return res
       .status(201)
@@ -54,7 +64,8 @@ router.post("/login", async (req, res, next) => {
       return res.status(400).json({ error: "Email and password required" });
     }
 
-    const user = await User.findOne({ email }).select("+passwordHash");
+    const db = getDb();
+    const user = await db.collection("users").findOne({ email });
     if (!user) {
       return res.status(404).json({ error: "No account for that email" });
     }

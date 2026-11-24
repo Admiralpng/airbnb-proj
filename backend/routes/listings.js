@@ -3,7 +3,8 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
-const Listing = require("../models/Listing");
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/mongo");
 const { requireAuth, requireListingOwner } = require("../middleware/auth");
 
 const router = express.Router();
@@ -75,7 +76,10 @@ const loadListing = async (req, res, next) => {
       return res.status(404).json({ error: "Listing not found" });
     }
 
-    const listing = await Listing.findById(req.params.id);
+    const db = getDb();
+    const listing = await db
+      .collection("listings")
+      .findOne({ _id: new ObjectId(req.params.id) });
     if (!listing) {
       return res.status(404).json({ error: "Listing not found" });
     }
@@ -89,7 +93,12 @@ const loadListing = async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const listings = await Listing.find().sort({ createdAt: 1 });
+    const db = getDb();
+    const listings = await db
+      .collection("listings")
+      .find()
+      .sort({ createdAt: 1 })
+      .toArray();
     return res.json({ listings });
   } catch (error) {
     return next(error);
@@ -135,7 +144,9 @@ router.post("/", requireAuth, uploadFields, async (req, res, next) => {
       return res.status(400).json({ error: "A main image is required" });
     }
 
-    const listing = await Listing.create({
+    const now = new Date();
+    const db = getDb();
+    const result = await db.collection("listings").insertOne({
       title,
       location,
       address,
@@ -145,7 +156,11 @@ router.post("/", requireAuth, uploadFields, async (req, res, next) => {
       image: uploadedMain.filename,
       layoutimgs: uploadedLayouts.map((file) => file.filename),
       owner: req.user._id,
+      createdAt: now,
+      updatedAt: now,
     });
+
+    const listing = { _id: result.insertedId, title, location, address, about, price, rating: Number(req.body.rating) || 0, image: uploadedMain.filename, layoutimgs: uploadedLayouts.map((file) => file.filename), owner: req.user._id, createdAt: now, updatedAt: now };
 
     return res.status(201).json({ listing });
   } catch (error) {
@@ -221,7 +236,25 @@ router.patch(
         ];
       }
 
-      await listing.save();
+      const db = getDb();
+      await db
+        .collection("listings")
+        .updateOne(
+          { _id: new ObjectId(listing._id) },
+          {
+            $set: {
+              title: listing.title,
+              location: listing.location,
+              address: listing.address,
+              about: listing.about,
+              price: listing.price,
+              image: listing.image,
+              layoutimgs: listing.layoutimgs,
+              updatedAt: new Date(),
+            },
+          },
+        );
+
       return res.json({ listing });
     } catch (error) {
       return next(error);
@@ -239,7 +272,10 @@ router.delete(
       const listing = req.listing;
       removeFile(listing.image);
       listing.layoutimgs.forEach((file) => removeFile(file));
-      await Listing.deleteOne({ _id: listing._id });
+      const db = getDb();
+      await db
+        .collection("listings")
+        .deleteOne({ _id: new ObjectId(listing._id) });
       return res.json({ deleted: true, id: listing._id });
     } catch (error) {
       return next(error);

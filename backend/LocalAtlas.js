@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const { seed } = require("./seed");
 
@@ -9,10 +8,9 @@ async function main() {
   const uri = memoryServer.getUri();
   console.log(`Using in-memory MongoDB at ${uri}`);
 
-  await mongoose.connect(uri);
+  process.env.MONGODB_URI = uri;
   await seed();
 
-  process.env.MONGODB_URI = uri;
   require("./server");
 }
 
