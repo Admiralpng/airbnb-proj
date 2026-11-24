@@ -4,16 +4,19 @@
 	align-content: center;
 	width: 100%;
 	height: fit-content;
+	gap: 36px;
 }
 
 .listing>img {
 	display: block;
 	width: 100%;
+	max-width: 350px;
 	height: 200px;
 	aspect-ratio: 7 / 5;
 	object-fit: cover;
 	border-radius: 8px;
 	image-rendering: optimizeQuality;
+	background-repeat: no-repeat;
 }
 
 .listing-info {
