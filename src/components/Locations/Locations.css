@@ -41,9 +41,8 @@
 
 .locations-page .heart {
 	position: absolute;
-	top: 5px;
-	right: 10px;
-	left: auto;
+	top: 8px;
+	right: 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -51,14 +50,12 @@
 	height: 34px;
 	cursor: pointer;
 	z-index: 2;
-	transform: none !important;
 	margin: 0;
 	padding: 0;
 }
 
 @media (max-width: 667px) {
 	.locations-page .heart {
-		transform: none !important;
 		right: 8px;
 		top: 8px;
 		width: 30px;
