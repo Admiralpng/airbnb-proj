@@ -22,9 +22,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 16px;
+	gap: 24px;
 	padding: 36px 0 18px;
-	height: fit-content;
+	height: 100%;
 	width: 100%;
 }
 
@@ -33,11 +33,17 @@
 	width: 100%;
 	overflow: hidden;
 	color: #000;
-	font-size: 15px;
-	font-weight: 500;
+	font-size: 18px;
+	font-weight: 600;
 	line-height: 22px;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 1;
+}
+
+.listing-address {
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 22px;
 }
 
 .location {
