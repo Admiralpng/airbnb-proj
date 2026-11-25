@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 import "../../Responsive Styles/ResponsiveHeader.css";
 import AuthContext from "../../App Context/authContext";
@@ -12,6 +12,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 export const Header = ({ onOpenBookings, onSelectLocation }) => {
   const { loggedIn, logout } = useContext(AuthContext);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const locroute = useLocation();
+  const isHostingRoute = locroute.pathname.startsWith("/hosting");
 
   const moreHandler = (event) => {
     event.stopPropagation();
@@ -78,7 +80,7 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                   </button>
                   {showMoreMenu && (
                     <div
-                      className={`${onSelectLocation ? "onHosting" : "more-menu"}`}
+                      className={`${isHostingRoute ? "onHosting" : "more-menu"}`}
                       onClick={(event) => event.stopPropagation()}
                     >
                       <a href="https://www.airbnb.co.za/help" target="_blank">
