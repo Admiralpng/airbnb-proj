@@ -85,7 +85,6 @@
 
 @media (max-width: 667px) {
 	.locations-page .heart {
-		position: relative;
 		top: 0px;
 		width: 34px;
 		height: 34px;
