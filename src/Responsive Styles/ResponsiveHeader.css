@@ -50,16 +50,24 @@
 		right: 16px;
 	}
 
-	.navbar > nav > :first-child {
+	.navbar>nav> :first-child {
 		order: 1;
 		flex: 1;
+	}
+
+	.more-menu-button.hostmobilebtn {
+		display: none;
 	}
 }
 
 @media (min-width: 668px) and (max-width: 1024px) {
 	.navbar {
-	width: 100%;
-	min-width: 350px;
-	padding: 20px 25px 15px;
+		width: 100%;
+		min-width: 350px;
+		padding: 20px 25px 15px;
+	}
+
+	.more-menu-button.hostmobilebtn {
+		display: initial;
 	}
 }
