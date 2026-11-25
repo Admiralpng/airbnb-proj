@@ -152,6 +152,10 @@ nav svg {
     cursor: pointer;
 }
 
+.more-menu-button.hostmobilebtn {
+    display: none;
+}
+
 .more-menu a:hover,
 .more-menu-button:hover {
     background: #f3f4f6;
