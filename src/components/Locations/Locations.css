@@ -85,10 +85,10 @@
 
 @media (max-width: 667px) {
 	.locations-page .heart {
-		top: 20px;
-		right: -35px;
+		position: relative;
+		top: 0px;
 		width: 34px;
 		height: 34px;
-		transform: unset;
+		transform: translateX(400px) translateY(0px)
 	}
 }
