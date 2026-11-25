@@ -69,7 +69,7 @@ const listings = [
     image: "https://www.sa-venues.com/visit/fairwayhotel/03g.jpg",
     layoutimgs,
     rating: 5,
-    price: 950,
+    price: 1369,
     about: "",
   },
   {
@@ -89,7 +89,7 @@ const listings = [
     image: "https://travelground.imgix.net/AAEAAQAAAAAAAAAAAAAA0e3c5920c91cb1f0c817a4b246b29ff8d75d0f6482245e0229a4120ac6744e751fa10e240a6597a64c47fe35ffecefeca267?w=540&h=405&fit=crop&auto=enhance,format,compress&q=80",
     layoutimgs,
     rating: 5,
-    price: 1369,
+    price: 950,
     about: "",
   },
   {
@@ -99,7 +99,7 @@ const listings = [
     image: "https://cdn.corner.inc/place-photo/AVoNoXSNQxf3jrk5TO7epCm1EQToomppcxAGidjM-vQj_rbpfBlvcOc2BkB05HbmfZxX4YlmTbp6_-77yD2PviwFEGoJd_lUWLlcnETcM2U9-6aqdKmIESd6mMwNTTOIHTHpBjl1bHK4IaDIL_LKk5dlsYXEkZCRoh6C_WFVhDhOA_qGshnxWS4orOYKmCqI9sueecJnXL5T6laBoYmx3XSqzc8Dyo-Zmn_jso6s_oHCDmw_N4Zu00_BDZE8WsOW6qolzMxJdm2Ww6W3Qz71QHIJjCZSQWtn3EanlHOWrsQMjZNJ8fRZkK9Mbf-qnpF9hpRcODOpJ7R6XnH9lSRcV_2wqN_QYAI3dgosq_P3esFTAq4UDfTOmrZEeSr61RHF6cXZ8TnDBVeW5OUVJ91yuYo50a2XGda-9CfIYgT9PrY7f3ivYZEO.png",
     layoutimgs,
     rating: 5,
-    price: 950,
+    price: 1250,
     about: "",
   },
   {
@@ -129,7 +129,7 @@ const listings = [
     image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/69/29/ee/dock-house-boutique-hotel.jpg?w=900&h=500&s=1",
     layoutimgs,
     rating: 5,
-    price: 1369,
+    price: 1200,
     about: "",
   },
 ];
