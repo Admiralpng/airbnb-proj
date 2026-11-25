@@ -136,10 +136,6 @@ nav svg {
     box-shadow: 0 4px 16px rgba(31, 41, 55, 0.14);
 }
 
-.onHosting {
-    right: -55px;
-}
-
 .more-menu a,
 .more-menu-button {
     display: flex;

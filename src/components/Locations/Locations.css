@@ -26,11 +26,6 @@
 	padding-bottom: 24px;
 }
 
-.locations-page .listing-array:hover {
-	box-shadow: 0 2px 4px rgba(31, 41, 55, 0.12);
-	transition: 150ms ease;
-}
-
 .locations-page .listing-box-container {
 	display: flex;
 	flex-direction: column;
@@ -42,6 +37,11 @@
 .locations-page .listing-box {
 	display: flex;
 	width: 100%;
+}
+
+.locations-page .listing-box:hover {
+	box-shadow: 0 2px 4px rgba(31, 41, 55, 0.12);
+	transition: 150ms ease;
 }
 
 .locations-page .heart {
