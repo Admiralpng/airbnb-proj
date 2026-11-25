@@ -13,6 +13,11 @@
 	.listing>img {
 		max-width: 100%;
 	}
+
+	.listing-info {
+		padding-top: 0;
+		width: fit-content;
+	}
 }
 
 .listing {
