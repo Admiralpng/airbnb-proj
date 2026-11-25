@@ -80,7 +80,7 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                   </button>
                   {showMoreMenu && (
                     <div
-                      className={`${isHostingRoute ? "onHosting" : "more-menu"}`}
+                      className={`more-menu ${isHostingRoute ? "onHosting" : ""}`}
                       onClick={(event) => event.stopPropagation()}
                     >
                       <a href="https://www.airbnb.co.za/help" target="_blank">

@@ -73,7 +73,7 @@
 	transform: translateX(128px);
 }
 
-.onHosting {
+.hosting-urls>.onHosting {
 	position: absolute;
 	top: 74px;
 	right: -45px;
