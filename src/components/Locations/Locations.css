@@ -21,6 +21,22 @@
 	color: #717171;
 }
 
+.locations-header ul {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 8px;
+	padding-bottom: 12px;
+	border-bottom: rgb(243, 244, 246);
+}
+
+.locations-header ul li {
+	list-style: none;
+	border-radius: 20px;
+	border: 1px solid rgb(243, 244, 246);
+	font-size: 13px;
+}
+
 .locations-page .listing-array {
 	width: 100%;
 	padding-bottom: 24px;

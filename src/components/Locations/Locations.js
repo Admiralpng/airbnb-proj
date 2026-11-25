@@ -39,6 +39,12 @@ export const Locations = () => {
       <div className="locations-header">
         <h1>{formatLocation(location || "")}</h1>
         <p>{displayedListings.length} Listings Available</p>
+        <ul>
+          <li>Free Cancellation</li>
+          <li>Type of Place</li>
+          <li>Price</li>
+          <li>More Filters</li>
+        </ul>
       </div>
       <div className="listing-array">
         <div className="listing-box-container">
