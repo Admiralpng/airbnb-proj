@@ -8,6 +8,12 @@
     row-gap: 24px;
     column-gap: 0;
     padding: 24px 0 48px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .listing-preview {
+    display: column;
   }
 
   .listing-image-wrapper img {
