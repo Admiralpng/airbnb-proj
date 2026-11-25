@@ -6,6 +6,12 @@
 	gap: 18px;
 }
 
+@media (max-width: 667px) {
+	.listing {
+		display: column;
+	}
+}
+
 .listing>img {
 	display: block;
 	width: 100%;

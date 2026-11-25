@@ -74,6 +74,6 @@
 	}
 
 	.more-menu-button.hostmobilebtn {
-		display: none;
+		display: block;
 	}
 }
