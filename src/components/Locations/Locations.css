@@ -84,9 +84,14 @@
 }
 
 @media (max-width: 667px) {
+	.locations-page .listing-box:first-child {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.locations-page .heart {
-		top: 0px;
-		right: -80px;
+		top: 8px;
+		right: -10px;
 		width: 34px;
 		height: 34px;
 		transform: unset;
