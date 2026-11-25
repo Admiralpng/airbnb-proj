@@ -4,10 +4,6 @@
 		margin-bottom: 10px;
 	}
 
-	.arrow-nav {
-		display: none;
-	}
-
 	#listings .listing-box-container {
 		flex-direction: column;
 		row-gap: 35px;
@@ -21,17 +17,6 @@
 }
 
 @media (min-width: 668px) and (max-width: 1024px) {
-	.arrow-nav {
-		row-gap: 40px;
-		margin-top: -22.5px;
-	}
-
-	.scroll-arrow,
-	.scroll-arrow svg {
-		width: 34px;
-		height: 34px;
-	}
-
 	.listing-box>div>span:first-child {
 		transform: translateX(10px);
 	}
