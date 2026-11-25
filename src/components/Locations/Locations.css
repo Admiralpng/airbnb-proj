@@ -1,89 +1,92 @@
 .locations-page {
-	padding: 20px;
-	max-width: 1200px;
-	margin: 0 auto;
-	margin-top: 24px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 24px;
 }
 
 .locations-header {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .locations-header h1 {
-	font-size: 32px;
-	font-weight: 700;
-	color: #222;
-	margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
 }
 
 .locations-header p {
-	font-size: 16px;
-	margin-bottom: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .locations-header ul {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 8px;
-	padding-bottom: 12px;
-	border-bottom: 1px solid rgb(243, 244, 246);
-	flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(243, 244, 246);
+  flex-wrap: wrap;
 }
 
 .locations-header ul li {
-	list-style: none;
-	border-radius: 20px;
-	border: 1px solid rgb(243, 244, 246);
-	font-size: 13px;
-	padding: 6px;
-	cursor: pointer;
+  list-style: none;
+  border-radius: 20px;
+  border: 1px solid rgb(243, 244, 246);
+  font-size: 13px;
+  padding: 6px;
+  cursor: pointer;
 }
 
 .locations-page .listing-array {
-	width: 100%;
-	padding-bottom: 24px;
+  width: 100%;
+  padding-bottom: 24px;
 }
 
 .locations-page .listing-box-container {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-	padding: 20px 0px;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 0px;
+  width: 100%;
 }
 
 .locations-page .listing-box {
-	display: flex;
-	width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .locations-page .listing-box:hover {
-	box-shadow: 0 2px 4px rgba(31, 41, 55, 0.12);
-	transition: 150ms ease;
+  box-shadow: 0 2px 4px rgba(31, 41, 55, 0.12);
+  transition: 150ms ease;
+}
+
+.locations-page .listing-box > div {
+  position: relative;
 }
 
 .locations-page .heart {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 34px;
-	height: 34px;
-	cursor: pointer;
-	z-index: 2;
-	margin: 0;
-	padding: 0;
-	transform: translateX(1152px) translateY(0px);
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 667px) {
-	.locations-page .heart {
-		right: 8px;
-		top: 8px;
-		width: 30px;
-		height: 30px;
-	}
+  .locations-page .heart {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+  }
 }
