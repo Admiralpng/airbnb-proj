@@ -24,6 +24,13 @@
 		line-height: 44px;
 	}
 
+	.gift-media {
+		height: 200px;
+		display: block;
+		background-size: cover;
+		background-position: center;
+	}
+
 	.hosting-title {
 		font-size: 48px;
 		line-height: 52px;
@@ -31,6 +38,10 @@
 }
 
 @media (max-width: 667px) {
+	.nav-pages {
+		gap: 24px;
+	}
+
 	.hero {
 		gap: 32px;
 		padding: 16px 16px 48px;
@@ -97,6 +108,9 @@
 
 	.gift-media {
 		height: 200px;
+		display: block;
+		background-size: cover;
+		background-position: center;
 	}
 
 	.hosting-card {
