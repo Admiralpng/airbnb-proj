@@ -121,4 +121,9 @@
 		padding: 0 8px;
 		width: fit-content;
 	}
+
+	.listing-info>div {
+		display: column;
+		gap: 12px;
+	}
 }
