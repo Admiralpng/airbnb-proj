@@ -59,6 +59,10 @@
 		flex: 1;
 	}
 
+	.more-menu-button {
+		margin-bottom: 5px;
+	}
+
 	.more-menu-button span a {
 		margin: 0;
 		padding: 0;

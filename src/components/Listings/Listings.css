@@ -5,46 +5,6 @@
 	margin-bottom: 10px;
 }
 
-.arrow-nav {
-	position: relative;
-	top: 50%;
-	display: flex;
-	flex-direction: column;
-	row-gap: 15px;
-	height: fit-content;
-	margin-left: 15px;
-	transform: translateY(120px);
-}
-
-.scroll-arrow {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 30px;
-	height: 30px;
-	border: 0;
-	border-radius: 9999px;
-}
-
-.scroll-arrow:hover {
-	background: gainsboro;
-	transition: ease-in-out 100ms;
-}
-
-#listings .listing-box-container {
-	display: flex;
-	align-items: center;
-	column-gap: 20px;
-	flex-wrap: nowrap;
-	overflow: hidden;
-	white-space: nowrap;
-	height: fit-content;
-	padding: 0 5px 45px;
-	border-bottom: 1px solid #ddd;
-	mask-image: linear-gradient(to right, black 98%, transparent 100%);
-	-webkit-mask-image: linear-gradient(to right, black 98%, transparent 100%);
-}
-
 .listing-box {
 	min-width: fit-content;
 	height: fit-content;
@@ -64,14 +24,14 @@
 	position: relative;
 }
 
-.listing-box > div > span {
+.listing-box>div>span {
 	position: absolute;
 	top: 10px;
 	z-index: 1;
 	color: #ff385c;
 }
 
-.listing-box > div > span:first-child {
+.listing-box>div>span:first-child {
 	min-width: fit-content;
 	height: fit-content;
 	padding: 5px 8px;
@@ -86,7 +46,7 @@
 	transform: translateX(12px);
 }
 
-.listing-box div > span svg {
+.listing-box div>span svg {
 	width: 28px;
 	height: 28px;
 }

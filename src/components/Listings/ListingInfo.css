@@ -1,11 +1,17 @@
 @media (max-width: 667px) {
 	.listing {
 		display: column;
+		width: 100%;
+		flex-wrap: wrap;
 	}
 
 	.listing-title {
 		font-size: 14px;
 		line-height: 20px;
+	}
+
+	.listing>img {
+		max-width: 100%;
 	}
 }
 

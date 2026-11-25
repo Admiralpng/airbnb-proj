@@ -8,8 +8,6 @@ import { useFavorites } from "./StoredEvents/Favorites";
 import { imageUrl } from "../../API";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 export const Listings = ({ location }) => {
   const { listings, loading, error } = useListings();
@@ -25,38 +23,6 @@ export const Listings = ({ location }) => {
     event.preventDefault();
     event.stopPropagation();
     toggleFavorite(id);
-  };
-
-  const smoothScroll = (element, target, duration) => {
-    const start = element.scrollLeft;
-    const change = target - start;
-    const startTime = performance.now();
-
-    const animateScroll = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease =
-        progress < 0.5
-          ? 2 * progress * progress
-          : -1 + (4 - 2 * progress) * progress;
-      element.scrollLeft = start + change * ease;
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
-      }
-    };
-
-    requestAnimationFrame(animateScroll);
-  };
-
-  const handleScroll = (direction, event) => {
-    const container = event.currentTarget
-      .closest(".listing-array")
-      .querySelector(".listing-box-container");
-    const scrollAmount = 333.7;
-    const targetScroll =
-      container.scrollLeft +
-      (direction === "left" ? -scrollAmount : scrollAmount);
-    smoothScroll(container, targetScroll, 400);
   };
 
   if (loading) {
@@ -99,20 +65,6 @@ export const Listings = ({ location }) => {
             />
           </Link>
         ))}
-      </div>
-      <div className="arrow-nav">
-        <button
-          className="scroll-arrow"
-          onClick={(event) => handleScroll("left", event)}
-        >
-          <NavigateBeforeIcon />
-        </button>
-        <button
-          className="scroll-arrow"
-          onClick={(event) => handleScroll("right", event)}
-        >
-          <NavigateNextIcon />
-        </button>
       </div>
     </div>
   );
