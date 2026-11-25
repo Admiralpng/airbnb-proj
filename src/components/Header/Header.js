@@ -109,7 +109,7 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                           <strong>Bookings</strong>
                         </span>
                       </span>
-                      <span className="more-menu-button hostmobilebtn">
+                      <span className=" hostmobilebtn">
                         {loggedIn ? (
                           <Link to="/hosting">
                             <h2><strong>Switch to Hosting</strong></h2>

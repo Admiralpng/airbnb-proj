@@ -56,7 +56,8 @@
 	}
 
 	.more-menu-button.hostmobilebtn {
-		display: none;
+		display: initial;
+		border-bottom: 1px solid #f3f4f6;
 	}
 }
 
@@ -68,6 +69,7 @@
 	}
 
 	.more-menu-button.hostmobilebtn {
-		display: initial;
+
+		display: none;
 	}
 }
