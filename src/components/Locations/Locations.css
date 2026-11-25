@@ -90,10 +90,10 @@
 	}
 
 	.locations-page .heart {
-		top: 8px;
-		right: -10px;
-		width: 34px;
-		height: 34px;
+		top: 275px;
+		right: 45px;
+		width: 40px;
+		height: 40px;
 		transform: unset;
 	}
 }
