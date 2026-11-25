@@ -1,10 +1,43 @@
 @media (max-width: 667px) {
-	.view-listing { padding: 16px; }
-	.listing-viewbox { flex-direction: column; row-gap: 24px; column-gap: 0; padding: 24px 0 48px; }
-	.listing-image-wrapper img { width: 100%; max-height: 280px; }
-	.img-layout { grid-template-columns: repeat(2, 1fr); }
-	.book-listing, .book-listing section, .anemities, .booking-calculator { width: 100%; max-width: 100%; }
-	.book-listing section { padding: 16px; }
-	.booking-details { position: static; transform: none; margin-top: 16px; }
-	.anemities ul { grid-template-columns: 1fr; }
+  .view-listing {
+    padding: 16px;
+  }
+
+  .listing-viewbox {
+    flex-direction: column;
+    row-gap: 24px;
+    column-gap: 0;
+    padding: 24px 0 48px;
+  }
+
+  .listing-image-wrapper img {
+    width: 100%;
+    max-height: 280px;
+  }
+
+  .img-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book-listing,
+  .book-listing section,
+  .anemities,
+  .booking-calculator {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .book-listing section {
+    padding: 16px;
+  }
+
+  .booking-details {
+    position: static;
+    transform: none;
+    margin-top: 16px;
+  }
+
+  .anemities ul {
+    grid-template-columns: 1fr;
+  }
 }

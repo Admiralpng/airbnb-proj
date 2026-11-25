@@ -1,30 +1,30 @@
 @media (max-width: 667px) {
-	.listing-array {
-	height: fit-content;
-	margin-bottom: 10px;
-	}
+  .listing-array {
+    height: fit-content;
+    margin-bottom: 10px;
+  }
 
-	.arrow-nav {
-	display: none;
-	}
+  .arrow-nav {
+    display: none;
+  }
 
-	#listings .listing-box-container {
-	flex-direction: column;
-	row-gap: 35px;
-	column-gap: 0;
-	height: fit-content;
-	}
+  #listings .listing-box-container {
+    flex-direction: column;
+    row-gap: 35px;
+    column-gap: 0;
+    height: fit-content;
+  }
 }
 
 @media (min-width: 668px) and (max-width: 1024px) {
-	.arrow-nav {
-	row-gap: 40px;
-	margin-top: -22.5px;
-	}
+  .arrow-nav {
+    row-gap: 40px;
+    margin-top: -22.5px;
+  }
 
-	.scroll-arrow,
-	.scroll-arrow svg {
-	width: 34px;
-	height: 34px;
-	}
+  .scroll-arrow,
+  .scroll-arrow svg {
+    width: 34px;
+    height: 34px;
+  }
 }

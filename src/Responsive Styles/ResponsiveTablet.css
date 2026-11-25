@@ -1,58 +1,252 @@
 @media (min-width: 668px) and (max-width: 1024px) {
-	body { font-size: 15px; }
-	h1 { font-size: 20px; }
-	main > :nth-child(2) { padding: 0 32px 0 48px; }
+  body {
+    font-size: 15px;
+  }
 
-	.listing-array { height: fit-content; }
-	.arrow-nav { display: none; }
-	.listing-box-container { flex-direction: column; row-gap: 20px; overflow: hidden; height: fit-content; padding-bottom: 32px; }
-	.listing-box > div > span:first-child { transform: translateX(10px); }
-	.heart { transform: translateX(280px) translateY(190px); }
+  h1 {
+    font-size: 20px;
+  }
 
-	.view-listing { padding: 24px 48px 0 64px; }
-	.listing-viewbox { flex-direction: column; row-gap: 24px; column-gap: 0; padding: 48px 0 64px; }
-	.listing-image-wrapper img { width: 100%; max-height: 340px; }
-	.img-layout { grid-template-columns: repeat(2, 1fr); }
-	.book-listing, .book-listing section, .anemities, .booking-calculator { width: 100%; max-width: 100%; }
-	.book-listing section { padding: 16px 20px; }
-	.booking-details { position: static; transform: none; margin-top: 16px; }
-	.anemities ul { grid-template-columns: 1fr 1fr; }
+  main > :nth-child(2) {
+    padding: 0 32px;
+  }
 
-	.edit-modal-container { width: min(480px, calc(100vw - 48px)); max-height: calc(100vh - 48px); padding: 20px; }
-	.edit-modal-header h2 { font-size: 17px; }
-	.edit-slide-dot { padding: 3px 9px; font-size: 10px; }
-	.edit-field input[type="text"], .edit-field input[type="number"], .edit-field select, .edit-field textarea { padding: 10px 12px; font-size: 14px; }
-	.edit-layout-image-item, .edit-layout-image-item .edit-image-upload, .edit-layout-image-item .edit-image-preview, .edit-add-image-btn { width: 75px; height: 75px; }
+  .listing-array {
+    height: fit-content;
+  }
 
-	.modal-bookings { width: min(450px, calc(100vw - 48px)); max-height: calc(100vh - 48px); padding: 20px; }
-	.booking-tabs button { padding: 10px; font-size: 13px; }
-	.booking-card { padding: 14px 42px 14px 14px; }
-	.booking-card > img { width: 92px; height: 76px; }
+  .arrow-nav {
+    display: none;
+  }
 
-	.login-body { height: auto; min-height: 100vh; padding: 32px 24px; background-size: cover; background-position: center; }
-	.login-body div { width: 400px; padding: 32px; transform: translateY(20%); }
-	.login-body div h1 { font-size: 21px; }
-	.login-body input { width: 280px; padding: 12px; font-size: 15px; }
-	.login-body div button { width: 140px; padding: 12px; font-size: 14px; }
+  .listing-box-container {
+    flex-direction: column;
+    row-gap: 20px;
+    overflow: hidden;
+    height: fit-content;
+    padding-bottom: 32px;
+  }
 
-	.not-found > a { padding: 40px 32px; }
-	.not-found img { border-radius: 16px; }
-	.not-found div { width: 500px; top: 130px; padding: 24px 32px 0; }
-	.not-found > div h1 { font-size: 28px; }
-	.not-found > div p { padding: 0 16px; font-size: 17px; }
+  .listing-box > div > span:first-child {
+    transform: translateX(10px);
+  }
 
-	.hosting-nav { padding: 16px 24px 16px 32px; }
-	.hosting-nav > a, .hosting-nav > svg { width: 36px; height: 36px; }
-	.hosting-urls > button, .host-main div:first-child button { width: 32px; height: 32px; }
-	.hosting-url h2 { padding: 6px 10px; font-size: 14px; }
-	.hosting-urls > .more-menu { top: 58px; transform: translateX(150px); }
-	.host-main { padding: 0 48px 0 64px; margin-top: 20px; }
-	.host-main div:first-child h1 { margin-bottom: 20px; font-size: 22px; }
-	.custom-listing-array { column-gap: 16px; padding: 28px 5px; }
-	.new-listing { min-width: 400px; min-height: 360px; }
-	.host-welcome { min-height: 50vh; padding: 40px 24px; }
-	.welcome-content h1 { font-size: 28px; }
-	.welcome-content p { font-size: 17px; }
-	.welcome-content a { transform: translateY(-40px); padding: 14px 28px; font-size: 15px; }
-	.welcome-content img { max-width: 600px; }
+  .heart {
+    transform: translateX(280px) translateY(190px);
+  }
+
+  .view-listing {
+    padding: 24px 48px 0 64px;
+  }
+
+  .listing-viewbox {
+    flex-direction: column;
+    row-gap: 24px;
+    column-gap: 0;
+    padding: 48px 0 64px;
+  }
+
+  .listing-image-wrapper img {
+    width: 100%;
+    max-height: 340px;
+  }
+
+  .img-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book-listing,
+  .book-listing section,
+  .anemities,
+  .booking-calculator {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .book-listing section {
+    padding: 16px 20px;
+  }
+
+  .booking-details {
+    position: static;
+    transform: none;
+    margin-top: 16px;
+  }
+
+  .anemities ul {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .edit-modal-container {
+    width: min(480px, calc(100vw - 48px));
+    max-height: calc(100vh - 48px);
+    padding: 20px;
+  }
+
+  .edit-modal-header h2 {
+    font-size: 17px;
+  }
+
+  .edit-slide-dot {
+    padding: 3px 9px;
+    font-size: 10px;
+  }
+
+  .edit-field input[type="text"],
+  .edit-field input[type="number"],
+  .edit-field select,
+  .edit-field textarea {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .edit-layout-image-item,
+  .edit-layout-image-item .edit-image-upload,
+  .edit-layout-image-item .edit-image-preview,
+  .edit-add-image-btn {
+    width: 75px;
+    height: 75px;
+  }
+
+  .modal-bookings {
+    width: min(450px, calc(100vw - 48px));
+    max-height: calc(100vh - 48px);
+    padding: 20px;
+  }
+
+  .booking-tabs button {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .booking-card {
+    padding: 14px 42px 14px 14px;
+  }
+
+  .booking-card > img {
+    width: 92px;
+    height: 76px;
+  }
+
+  .login-body {
+    height: auto;
+    min-height: 100vh;
+    padding: 32px 24px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .login-body div {
+    width: 400px;
+    padding: 32px;
+    transform: translateY(20%);
+  }
+
+  .login-body div h1 {
+    font-size: 21px;
+  }
+
+  .login-body input {
+    width: 280px;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .login-body div button {
+    width: 140px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .not-found > a {
+    padding: 40px 32px;
+  }
+
+  .not-found img {
+    border-radius: 16px;
+  }
+
+  .not-found div {
+    width: 500px;
+    top: 130px;
+    padding: 24px 32px 0;
+  }
+
+  .not-found > div h1 {
+    font-size: 28px;
+  }
+
+  .not-found > div p {
+    padding: 0 16px;
+    font-size: 17px;
+  }
+
+  .hosting-nav {
+    padding: 16px 24px 16px 32px;
+  }
+
+  .hosting-nav > a,
+  .hosting-nav > svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hosting-urls > button,
+  .host-main div:first-child button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hosting-url h2 {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .hosting-urls > .more-menu {
+    top: 58px;
+    transform: translateX(150px);
+  }
+
+  .host-main {
+    padding: 0 48px 0 64px;
+    margin-top: 20px;
+  }
+
+  .host-main div:first-child h1 {
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .custom-listing-array {
+    column-gap: 16px;
+    padding: 28px 5px;
+  }
+
+  .new-listing {
+    min-width: 400px;
+    min-height: 360px;
+  }
+
+  .host-welcome {
+    min-height: 50vh;
+    padding: 40px 24px;
+  }
+
+  .welcome-content h1 {
+    font-size: 28px;
+  }
+
+  .welcome-content p {
+    font-size: 17px;
+  }
+
+  .welcome-content a {
+    transform: translateY(-40px);
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
+  .welcome-content img {
+    max-width: 600px;
+  }
 }
