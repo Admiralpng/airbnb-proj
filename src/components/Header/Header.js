@@ -54,6 +54,17 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
           <h1 className="nav-page">Bookings</h1>
         </div>
         <div className="user-config">
+          <span className="hostdesktopbtn">         
+            {loggedIn ? (
+              <Link to="/hosting" className="hosting-btn">
+                <h2><strong>Switch to Hosting</strong></h2>
+              </Link>
+            ) : (
+              <Link to="/login" className="hosting-btn">
+                <h2><strong>Become a Host</strong></h2>
+              </Link>
+            )}
+          </span>
           <button className="globe-btn">
             <PublicIcon />
           </button>
