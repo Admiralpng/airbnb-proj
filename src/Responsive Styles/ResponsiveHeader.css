@@ -55,6 +55,11 @@
 		flex: 1;
 	}
 
+	.more-menu-button span a {
+		margin: 0;
+		padding: 0;
+	}
+
 	.more-menu-button.hostmobilebtn {
 		display: block;
 		border-bottom: 1px solid #f3f4f6;
