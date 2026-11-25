@@ -103,7 +103,7 @@ export const Home = () => {
       <section className="hero">
         <SearchPill/>
         <div className="hero-card">
-          <div style={{ borderRadius: "10px", padding: "0 10px", backdropFilter: "blur(2px)" }}>
+          <div style={{ borderRadius: "10px", padding: "0 10px", backdropFilter: "blur(2px)", boxShadow: "inset 0 0 20px 15px transparent" }}>
             <h1>Not sure where to go? Perfect.</h1>
             <button type="button" className="btn btn-light">
               I'm flexible

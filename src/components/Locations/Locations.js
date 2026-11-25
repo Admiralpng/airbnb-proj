@@ -40,10 +40,10 @@ export const Locations = () => {
         <h1>{formatLocation(location || "")}</h1>
         <p>{displayedListings.length} Listings Available</p>
         <ul>
-          <li>Free Cancellation</li>
-          <li>Type of Place</li>
-          <li>Price</li>
-          <li>More Filters</li>
+          <li><strong>Free Cancellation</strong></li>
+          <li><strong>Type of Place</strong></li>
+          <li><strong>Price</strong></li>
+          <li><strong>More Filters</strong></li>
         </ul>
       </div>
       <div className="listing-array">
