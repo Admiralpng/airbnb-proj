@@ -65,6 +65,7 @@
 
 .locations-page .listing-box>div {
 	position: relative;
+	width: 100%;
 }
 
 .locations-page .heart {
@@ -84,10 +85,11 @@
 }
 
 @media (max-width: 667px) {
+	.locations-page .listing-box:first-child {
+		width: 100%;
+	}
+
 	.locations-page .heart {
-		top: 0px;
-		width: 34px;
-		height: 34px;
-		transform: translateX(400px) translateY(0px)
+		position: static;
 	}
 }
