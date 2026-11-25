@@ -69,6 +69,7 @@ export const Locations = () => {
                   id={listing._id}
                   location={listing.location}
                   title={listing.title}
+                  address={listing.address}
                   image={imageUrl(listing.image)}
                   rating={listing.rating}
                   price={listing.price}
