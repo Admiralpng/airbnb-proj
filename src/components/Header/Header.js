@@ -52,16 +52,6 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                 <h1 className="nav-page">Bookings</h1>
               </div>
               <div className="user-config">
-                {loggedIn ? (
-                  <Link to="/hosting" className="hosting-btn">
-                    <h2><strong>Switch to Hosting</strong></h2>
-                  </Link>
-                ) : (
-                  <Link to="/login" className="hosting-btn">
-                    <h2><strong>Become a Host</strong></h2>
-                  </Link>
-                )}
-                <div>
                   <button className="globe-btn">
                     <PublicIcon />
                   </button>
@@ -78,7 +68,7 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                   </button>
                   {showMoreMenu && (
                     <div
-                      className="more-menu"
+                      className={`more-menu ${isHostingRoute ? "onHosting" : ""}`}
                       onClick={(event) => event.stopPropagation()}
                     >
                       <a href="https://www.airbnb.co.za/help" target="_blank">
@@ -109,16 +99,19 @@ export const Header = ({ onOpenBookings, onSelectLocation }) => {
                           <strong>Bookings</strong>
                         </span>
                       </span>
-                      <span className=" hostmobilebtn">
-                        {loggedIn ? (
-                          <Link to="/hosting">
-                            <h2><strong>Switch to Hosting</strong></h2>
-                          </Link>
-                        ) : (
-                          <Link to="/login">
-                            <h2><strong>Become a Host</strong></h2>
-                          </Link>
-                        )}
+                      <span
+                        className="more-menu-button"
+                        onClick={() => {
+                          setShowMoreMenu(false);
+                        }}
+                      >
+                        <span>
+                          {loggedIn ? (
+                            <Link to="/hosting"><strong>Switch to Hosting</strong></Link>
+                          ) : (
+                            <Link to="/login"><strong>Become a Host</strong></Link>
+                          )}
+                        </span>
                       </span>
                       {loggedIn ? (
                         <Link
