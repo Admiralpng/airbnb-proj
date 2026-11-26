@@ -139,4 +139,8 @@
 		align-content: center;
 		gap: 12px;
 	}
+
+	.listing-address {
+		margin-bottom: 20px;
+	}
 }
