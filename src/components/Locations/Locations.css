@@ -112,7 +112,6 @@
 		border: 2px solid #ff385c;
 		border-radius: 50%;
 		background: rgba(255, 255, 255, 0.4);
-		color: #000;
 		backdrop-filter: blur(8px);
 	}
 }
