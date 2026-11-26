@@ -124,6 +124,8 @@
 
 	.listing-info>div {
 		display: column;
+		justify-content: unset;
+		align-content: unset;
 		gap: 12px;
 	}
 }
