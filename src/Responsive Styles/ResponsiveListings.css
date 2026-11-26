@@ -15,13 +15,3 @@
 		transform: translateX(10px);
 	}
 }
-
-@media (min-width: 668px) and (max-width: 1024px) {
-	.listing-box>div>span:first-child {
-		transform: translateX(10px);
-	}
-
-	.heart {
-		transform: translateX(280px) translateY(190px);
-	}
-}

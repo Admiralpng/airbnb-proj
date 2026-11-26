@@ -129,3 +129,12 @@
 		gap: 12px;
 	}
 }
+
+@media (min-width: 668px) and (max-width: 1024px) {
+	.listing-info>div {
+		display: column;
+		justify-content: unset;
+		align-content: center;
+		gap: 12px;
+	}
+}
