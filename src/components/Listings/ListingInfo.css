@@ -123,7 +123,8 @@
 	}
 
 	.listing-info>div {
-		display: column;
+		display: flex;
+		flex-direction: column;
 		justify-content: unset;
 		align-content: unset;
 		gap: 12px;
@@ -132,7 +133,8 @@
 
 @media (min-width: 668px) and (max-width: 1024px) {
 	.listing-info>div {
-		display: column;
+		display: flex;
+		flex-direction: column;
 		justify-content: unset;
 		align-content: center;
 		gap: 12px;

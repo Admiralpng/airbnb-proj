@@ -103,7 +103,11 @@
 		transform: translateX(10px);
 	}
 
-	.heart {
-		transform: translateX(280px) translateY(190px);
+	.locations-page .heart {
+		top: 100px;
+		left: 0;
+		width: 40px;
+		height: 40px;
+		transform: unset;
 	}
 }
